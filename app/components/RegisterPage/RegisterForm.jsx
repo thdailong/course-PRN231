@@ -1,130 +1,132 @@
 'use client';
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        CoursePRN
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const RegisterForm = () => {
+  const [formData, setFormData] = React.useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
 
-// const defaultTheme = createTheme();
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
 
-export default function RegisterForm() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
   };
 
+  const handleShowPassword = () => setShowPassword(show => !show);
+  const handleShowConfirmPassword = () => setShowConfirmPassword(show => !show);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form data:', formData);
+  };
+
   return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
+    <Container maxWidth="sm">
+      <Typography 
+        variant="h4" 
+        color="#1976D2" 
+        align="center" 
+        style={{ fontWeight: 'bold', marginBottom: '10px', marginTop: '20px' }}>
+        Welcome to CoursePRN
+      </Typography>
+      <Typography variant="subtitle1" align="center" style={{ marginBottom: '20px' }}>
+        Sign up to receive offers and manage your courses better
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Username"
+          variant="outlined"
+          name="username"
+          fullWidth
+          margin="normal"
+          onChange={handleInputChange}
+          value={formData.username}
+        />
+        <TextField
+          label="Email"
+          variant="outlined"
+          name="email"
+          fullWidth
+          margin="normal"
+          onChange={handleInputChange}
+          value={formData.email}
+        />
+        <FormControl fullWidth variant="outlined" margin="normal">
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <OutlinedInput
+            id="password"
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            onChange={handleInputChange}
+            value={formData.password}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton onClick={handleShowPassword} edge="end">
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
+        <FormControl fullWidth variant="outlined" margin="normal">
+          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
+          <OutlinedInput
+            id="confirmPassword"
+            type={showConfirmPassword ? 'text' : 'password'}
+            name="confirmPassword"
+            onChange={handleInputChange}
+            value={formData.confirmPassword}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton onClick={handleShowConfirmPassword} edge="end">
+                  {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Confirm Password"
+          />
+        </FormControl>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          size="large"
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
+          Create Account
+        </Button>
+      </form>
+      <Typography variant="body2" align="center" style={{ marginTop: '20px' }}>
+        Already have an account?{' '}
+        <Link href="/login" color="primary">
+          Log in
+        </Link>
+      </Typography>
+      <Typography variant="body2" color="textSecondary" align="center" style={{ marginTop: '20px' }}>
+        By registering on CoursePRN, you agree to our Policies and Privacy Policy.
+        This site is protected by the reCAPTCHA consortium and under the Google Privacy Policy and Terms of Service.
+      </Typography>
+    </Container>
   );
-}
+};
+
+export default RegisterForm;
