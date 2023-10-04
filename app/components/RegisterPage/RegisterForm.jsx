@@ -11,6 +11,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import * as Style from '@/app/components/RegisterPage/Register.styled'
 
 const RegisterForm = () => {
   const [formData, setFormData] = React.useState({
@@ -40,14 +41,10 @@ const RegisterForm = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography 
-        variant="h4" 
-        color="#1976D2" 
-        align="center" 
-        style={{ fontWeight: 'bold', marginBottom: '10px', marginTop: '20px' }}>
+      <Typography variant="h4" sx={Style.Title}>
         Welcome to CoursePRN
       </Typography>
-      <Typography variant="subtitle1" align="center" style={{ marginBottom: '20px' }}>
+      <Typography variant="subtitle1" sx={Style.SubTitle}>
         Sign up to receive offers and manage your courses better
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -115,13 +112,13 @@ const RegisterForm = () => {
           Create Account
         </Button>
       </form>
-      <Typography variant="body2" align="center" style={{ marginTop: '20px' }}>
+      <Typography variant="body2" sx={Style.BottomText}>
         Already have an account?{' '}
         <Link href="/login" color="primary">
           Log in
         </Link>
       </Typography>
-      <Typography variant="body2" color="textSecondary" align="center" style={{ marginTop: '20px' }}>
+      <Typography variant="body2" color="textSecondary" sx={Style.BottomText}>
         By registering on CoursePRN, you agree to our Policies and Privacy Policy.
         This site is protected by the reCAPTCHA consortium and under the Google Privacy Policy and Terms of Service.
       </Typography>
