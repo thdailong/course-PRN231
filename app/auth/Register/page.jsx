@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import * as Style from './Register.styled'
 import Link from 'next/link';
-import Layout from '../layput';
+import Layout from '../layout';
 
 const RegisterForm = () => {
     const [formData, setFormData] = React.useState({
@@ -41,7 +41,6 @@ const RegisterForm = () => {
     };
 
     return (
-        <Layout>
             <Container maxWidth="sm">
                 <Typography variant="h4" sx={Style.Title}>
                     Welcome to CoursePRN
@@ -125,7 +124,6 @@ const RegisterForm = () => {
                     This site is protected by the reCAPTCHA consortium and under the Google Privacy Policy and Terms of Service.
                 </Typography>
             </Container>
-        </Layout>
     );
 };
 

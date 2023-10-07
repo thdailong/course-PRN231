@@ -1,10 +1,10 @@
 "use client";
 import { Box, Button, TextField } from "@mui/material";
-import Layout from "../layput";
-import imgageicon from '../images/forgotIcon.png'
+import Layout from "../layout";
 import styles from './page.module.css'
 import { useState } from "react";
 import Link from "next/link";
+import { validateEmail } from "../utils/utils";
 
 export default () => {
 
@@ -12,17 +12,6 @@ export default () => {
     const [emilValid, setEmailValid] = useState(true)
 
 
-    // regex check valid email
-    const validateEmail = (email) => {
-        return String(email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-    };
-
-
-    // when click will check email valid or not then set it to the useState
     const handelReset = () => {
         if (validateEmail(emails)) {
             setEmailValid(true)
@@ -32,7 +21,6 @@ export default () => {
 
     
     return (
-        <Layout>
             <Box
                 sx={
                     {
@@ -65,9 +53,9 @@ export default () => {
                         alignItems: 'center',
                     }}>
                         <Box sx={{ height: '100%', width: '30px', borderRadius: '100%', cursor: 'pointer', }}>
-                            <img className={styles.imgicon} src={imgageicon} alt="" />
+                            <img className={styles['img-icon']}  alt="" />
                         </Box>
-                        <p className={styles.icontext}>COURSE PRN</p>
+                        <p className={styles['icon-text']}>COURSE PRN</p>
                     </Box>
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', color: '#1976d2' }}><h1>Password reset</h1></Box>
                     <TextField
@@ -84,7 +72,6 @@ export default () => {
                     </Box>
                 </Box>
             </Box>
-        </Layout>
 
     );
 }

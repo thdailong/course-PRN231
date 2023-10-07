@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import styles from './page.module.css'
-import Layout from "../layput";
+import Layout from "../layout";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
 
@@ -63,7 +63,6 @@ export default function Login(props) {
 
 
   return (
-    <Layout>
       <Box sx={{
         height: '100vh',
         width: '100%',
@@ -117,7 +116,6 @@ export default function Login(props) {
           <Link href="/auth/Register">register</Link>
         </Box>
       </Box>
-    </Layout>
 
   );
 }
