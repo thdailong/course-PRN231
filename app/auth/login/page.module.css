@@ -1,0 +1,29 @@
+/*
+*  html5resetcss
+*/
+
+.login-box{
+    height: 50%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: #c5c5c5 0px 2px 8px 3px;
+    border-radius: 10px;
+    gap: 10px;
+    padding: 18px 18px;
+    background-color: white;
+}
+
+.login-btn{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    margin-top: 30px;
+    justify-content: space-between;
+
+}
+
+.login-btn button{
+    width: 50%;
+}
+

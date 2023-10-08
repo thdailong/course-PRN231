@@ -1,0 +1,11 @@
+.img-icon{
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+}
+
+.icon-text{
+    color: #1976d2;
+    font-size: 18px;
+    font-weight: 600;
+}
