@@ -49,18 +49,62 @@ const page = () => {
           </Grid>
         ))}
       </Grid>
-      <TableComponent
-        columns={[
-          {
-            id: 'name',
-            label: 'Name',
-            minWidth: 170,
-            render: ({ title }) => <Typography>{title}</Typography>,
-          },
-        ]}
-        theme="light"
-        rows={OverviewCards}
-      />
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              bgcolor: '#FFF',
+              borderRadius: '12px',
+              padding: '20px',
+              color: '#000',
+              boxShadow: '5px 5px 4px -1px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <Typography fontWeight={600} fontSize={16} mb={1}>
+              Newest course
+            </Typography>
+            <TableComponent
+              columns={[
+                {
+                  id: 'name',
+                  label: 'Name',
+                  minWidth: 170,
+                  render: ({ title }) => <Typography>{title}</Typography>,
+                },
+              ]}
+              theme="light"
+              rows={OverviewCards}
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              bgcolor: '#FFF',
+              borderRadius: '12px',
+              padding: '20px',
+              color: '#000',
+              boxShadow: '5px 5px 4px -1px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <Typography fontWeight={600} fontSize={16} mb={1}>
+              Newest user
+            </Typography>
+            <TableComponent
+              columns={[
+                {
+                  id: 'name',
+                  label: 'Name',
+                  minWidth: 170,
+                  render: ({ title }) => <Typography>{title}</Typography>,
+                },
+              ]}
+              theme="light"
+              rows={OverviewCards}
+            />
+          </Box>
+        </Grid>
+      </Grid>
     </>
   )
 }

@@ -6,6 +6,8 @@ import {
   Button,
   Divider,
   IconButton,
+  Menu,
+  MenuItem,
   Stack,
   Toolbar,
   Typography,
@@ -115,6 +117,14 @@ const SideBar = () => {
 }
 
 const NavBar = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
   return (
     <AppBar
       position="fixed"
@@ -138,7 +148,7 @@ const NavBar = () => {
           component="div"
           sx={{ flexGrow: 1 }}
         ></Typography>
-        <Box
+        <Button
           sx={{
             color: '#000',
             display: 'flex',
@@ -146,8 +156,13 @@ const NavBar = () => {
             gap: '12px',
             bgcolor: 'rgba(0, 0, 0, 0.2)',
             p: 1,
+            px: 2,
             borderRadius: '24px',
+            '&:hover': {
+              bgcolor: 'rgba(0, 0, 0, 0.4)',
+            },
           }}
+          onClick={handleClick}
         >
           <PersonIcon
             sx={{
@@ -158,7 +173,22 @@ const NavBar = () => {
             }}
           />{' '}
           Admin
-        </Box>
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          slotProps={{
+            paper: {
+              sx: {
+                width: '120px',
+              },
+            },
+          }}
+        >
+          <MenuItem onClick={handleClose}>Logout</MenuItem>
+        </Menu>
       </Toolbar>
     </AppBar>
   )
