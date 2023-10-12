@@ -57,7 +57,7 @@ const page = () => {
               borderRadius: '12px',
               padding: '20px',
               color: '#000',
-              boxShadow: '5px 5px 4px -1px rgba(0, 0, 0, 0.2)',
+              boxShadow: '0px 0px 12px 0px rgba(0, 0, 0, 0.2)',
             }}
           >
             <Typography fontWeight={600} fontSize={16} mb={1}>
@@ -84,7 +84,7 @@ const page = () => {
               borderRadius: '12px',
               padding: '20px',
               color: '#000',
-              boxShadow: '5px 5px 4px -1px rgba(0, 0, 0, 0.2)',
+              boxShadow: '0px 0px 12px 0px rgba(0, 0, 0, 0.2)',
             }}
           >
             <Typography fontWeight={600} fontSize={16} mb={1}>

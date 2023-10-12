@@ -133,6 +133,7 @@ const NavBar = () => {
         ml: sideBarWidth,
         bgcolor: 'rgba(255, 255, 255, 0.8)',
         backdropFilter: 'blur(6px)',
+        boxShadow: 'none',
       }}
     >
       <Toolbar>
@@ -197,7 +198,7 @@ const LayoutAdmin = ({ children }) => {
   return (
     <FullScreenLayout
       sx={{
-        bgcolor: 'rgba(0, 0, 0, 0.05)',
+        bgcolor: 'rgba(255, 255, 255, 0.05)',
       }}
     >
       <NavBar />
