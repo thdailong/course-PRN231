@@ -1,0 +1,41 @@
+.box-img:hover>.img-card {
+    transform: scale(1.2);
+}
+
+.box-contain:hover >.span{
+    opacity: 1;
+    transform: translate(-50%, -215px); 
+}
+
+.span {
+    width: 150px;
+    max-width: 200px;
+    height: 35px;
+    opacity: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    line-height: 35px;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.5s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(105, 65, 198);
+    transform: translate(-50%, -150px);
+    user-select: none;
+    cursor: unset;
+}
+
+.span::before{
+    content: "";
+    display: block;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(105, 65, 198);
+    bottom: 0px;
+    transform: translateX(59px) translateY(5px) rotate(45deg);
+    z-index: -1;
+}

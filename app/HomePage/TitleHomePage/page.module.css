@@ -1,0 +1,35 @@
+.hero-title span{
+    color: #7F56D9;
+}
+
+.hero-asm span:nth-child(1){
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.hero-asm span:nth-child(2){
+    font-size: 14px;
+    color: gray;
+}
+
+.hero-lecture span:nth-child(1){
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.hero-lecture span:nth-child(2){
+    font-size: 14px;
+    color: gray;
+}
+
+.hero-online span:nth-child(1){
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.hero-online span:nth-child(2){
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    color: gray;
+}
