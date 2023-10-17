@@ -17,7 +17,6 @@ const animation = { duration: 5000, easing: (t) => t }
 export default function SliderHero() {
 
     // vi ly do su dung thu vien nen se phai su dung class
-
     const [sliderRef] = useKeenSlider(
         {
             loop: true,
@@ -55,43 +54,43 @@ export default function SliderHero() {
     )
     return (
         <Box ref={sliderRef} className='keen-slider' sx={{ height: '400px', marginTop: "30px" }}>
-            <Box className='keen-slider__slide number-slide1' sx={{borderRadius:"20px"}}>
+            <Box className='keen-slider__slide number-slide1' sx={{ borderRadius: "20px" }}>
                 <Image
                     alt='picture'
                     src={firstImg}
                     fill
                     objectFit='cover'
                 /></Box>
-            <Box className='keen-slider__slide number-slide2' sx={{borderRadius:"20px"}}> <Image
-                    alt='picture'
-                    src={scnImg}
-                    objectFit='cover'
-                    fill
-                /></Box>
-            <Box className='keen-slider__slide number-slide3' sx={{borderRadius:"20px"}}> <Image
-                    alt='picture'
-                    src={thirdstImg}
-                    objectFit='cover'
-                    fill
-                /></Box>
-            <Box className='keen-slider__slide number-slide4' sx={{borderRadius:"20px"}}> <Image
-                    alt='picture'
-                    src={fourImg}
-                    objectFit='cover'
-                    fill
-                /></Box>
-            <Box className='keen-slider__slide number-slide5' sx={{borderRadius:"20px"}}> <Image
-                    alt='picture'
-                    src={fiveImg}
-                    objectFit='cover'
-                    fill
-                /></Box>
-            <Box className='keen-slider__slide number-slide6' sx={{borderRadius:"20px"}}> <Image
-                    alt='picture'
-                    src={sixImg}
-                    objectFit='cover'
-                    fill
-                /></Box>
+            <Box className='keen-slider__slide number-slide2' sx={{ borderRadius: "20px" }}> <Image
+                alt='picture'
+                src={scnImg}
+                objectFit='cover'
+                fill
+            /></Box>
+            <Box className='keen-slider__slide number-slide3' sx={{ borderRadius: "20px" }}> <Image
+                alt='picture'
+                src={thirdstImg}
+                objectFit='cover'
+                fill
+            /></Box>
+            <Box className='keen-slider__slide number-slide4' sx={{ borderRadius: "20px" }}> <Image
+                alt='picture'
+                src={fourImg}
+                objectFit='cover'
+                fill
+            /></Box>
+            <Box className='keen-slider__slide number-slide5' sx={{ borderRadius: "20px" }}> <Image
+                alt='picture'
+                src={fiveImg}
+                objectFit='cover'
+                fill
+            /></Box>
+            <Box className='keen-slider__slide number-slide6' sx={{ borderRadius: "20px" }}> <Image
+                alt='picture'
+                src={sixImg}
+                objectFit='cover'
+                fill
+            /></Box>
         </Box>
     )
 }

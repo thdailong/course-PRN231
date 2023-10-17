@@ -11,13 +11,13 @@ function ListFamous({ dataProduct }) {
                 height: 'auto',
                 display: 'flex',
                 gap: '10px',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
             }
         }>
             {
                 dataProduct.length > 0 && dataProduct.map((item) => (
                     <FmProduct key={item.id} item={item} />
-                )) 
+                ))
             }
 
         </Box>

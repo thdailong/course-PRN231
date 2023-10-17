@@ -21,7 +21,7 @@ export default function OwProductCard(props) {
   }
 
   return (
-    <Box sx={{width:"calc(25% - 5px)", minWidth: 'calc(25% - 5px)', height: '100%', borderRadius: "20px", boxShadow: "10", padding: "10px 10px 5px 10px", display: 'flex', flexDirection: "column", alignItems: "flex-start" }}>
+    <Box sx={{ width: "calc(25% - 5px)", minWidth: 'calc(25% - 5px)', height: '100%', borderRadius: "20px", boxShadow: "10", padding: "10px 10px 5px 10px", display: 'flex', flexDirection: "column", alignItems: "flex-start" }}>
       <Card sx={{ minWidth: '100%', minHeight: '150px', borderRadius: "10px", cursor: 'pointer', overflow: "hidden", position: 'relative' }}>
         <CardActionArea>
           <CardMedia
@@ -52,7 +52,7 @@ export default function OwProductCard(props) {
       </Card>
       <Typography variant='body1' sx={{ marginTop: '10px', fontSize: '18px', fontWeight: '600', color: "#6941C6" }}>{item.email}</Typography>
       <Typography variant='body1' sx={{ marginTop: "10px", color: "#667085", fontSize: "10px" }}>{item.des.slice(0, 200)} ...</Typography>
-      <Box sx={{display:"flex", justifyContent:"flex-end", width:"100%", marginTop:"10px"}}>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%", marginTop: "10px" }}>
         <IconButton color="secondary" aria-label="add an alarm">
           <ShareIcon />
         </IconButton>

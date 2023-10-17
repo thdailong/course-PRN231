@@ -1,17 +1,37 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Pagination, Typography } from '@mui/material'
 import ReactPaginate from 'react-paginate';
 import styles from './page.module.css'
 import ListFamous from '../components/ListFamousProduct/page'
 import { getPosts } from '../../page';
-import { getAllProduct } from './apiCalling';
+import { getAllCard, getAllProduct } from './apiCalling';
 // rfec
 
 function ProductNav() {
+    const[currentPage, setCurrentPage] = useState(1)
     const [dataProduct, setDataProduct] = useState([])
     const [totalProduct, setTotalProduct] = useState()
     const [totalPage, setTotalPage] = useState()
+    
+    // lay data tu calldata
+    const data = getAllCard().data
+
+    // xac dinh so phan tu trong trang
+    const itemPerPage = 4
+
+    // xac dinh so trang
+    const pageCount = Math.ceil(data.length / itemPerPage);
+
+    // phan tu nao se display trong trang 
+    const displayedData = data.slice(
+        (currentPage - 1) * itemPerPage,
+        ((currentPage - 1) + 1) * itemPerPage
+    );
+
+    const handlePagnating = (e, vl) =>{
+        setCurrentPage(vl)
+    }
 
     useEffect(() => {
         getProduct(1)
@@ -31,8 +51,8 @@ function ProductNav() {
     }
     return (
         <Box sx={
-            {   
-                minHeight:'600px',
+            {
+                minHeight: '600px',
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
@@ -60,27 +80,14 @@ function ProductNav() {
                     width: '100%',
                     height: 'auto',
                     display: 'flex',
-                    justifyContent:'center',
-                    gap:'10px',
+                    justifyContent: 'center',
+                    gap: '10px',
                     flexDirection: 'column',
-                    alignItems:'center',
+                    alignItems: 'center',
                 }
             }>
-                <ListFamous dataProduct={dataProduct}/>
-                <ReactPaginate
-                    previousLabel={"←"}
-                    nextLabel={"→"}
-                    pageCount={totalPage}
-                    pageRangeDisplayed={6}
-                    onPageChange={handlePageClick}
-                    pageClassName={styles['pagination-dot']}
-                    pageLinkClassName={styles['pagination-a']}
-                    containerClassName={styles.pagination}
-                    previousLinkClassName={styles['pagination__link']}
-                    nextLinkClassName={styles['pagination__link']}
-                    disabledClassName={styles['pagination__link--disabled']}
-                    activeClassName={styles['pagination__link--active']}
-                />
+                <ListFamous dataProduct={displayedData} />
+                <Pagination count={pageCount} color="secondary" onChange={handlePagnating} sx={{ marginTop: "30px", width: "100%", display: "flex", justifyContent: "center" }} />
                 <Button variant="outlined" className={styles['btn-famous']}>View more</Button>
             </Box>
         </Box>

@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Box, Pagination, Typography } from '@mui/material'
-import { OwnProductList, handlePageOnw } from './until'
+import { OwnProductList, handlePageOnw } from './callAPI'
 import OwProductList from '../components/OwProductList/page'
 
 export default function OwnProduct() {
@@ -31,14 +31,11 @@ export default function OwnProduct() {
 
   return (
     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: "30px" }}>
-      <Box sx={
-        {
-        }
-      }>
+      <Box>
         <Typography variant='h1' sx={{ fontSize: '30px', color: '#252424', fontWeight: '800' }}>Your Course</Typography>
       </Box>
       <OwProductList displayedData={displayedData} />
-      <Pagination count={pageCount} color="secondary" onChange={handleCrPage} sx={{width:"100%", display:"flex", justifyContent:"center", marginTop:"15px"}}/>
+      <Pagination count={pageCount} color="secondary" onChange={handleCrPage} sx={{ width: "100%", display: "flex", justifyContent: "center", marginTop: "15px" }} />
     </Box>
   )
 }

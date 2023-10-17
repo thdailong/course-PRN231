@@ -1,4 +1,4 @@
-import { OwnProductList } from "../../OwnProduct/pages/until"
+import { OwnProductList } from "../../OwnProduct/pages/callAPI"
 
 export const data =
 {

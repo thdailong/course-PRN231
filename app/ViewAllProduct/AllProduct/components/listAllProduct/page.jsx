@@ -17,7 +17,7 @@ export default function ListAllProduct({ displayedData }) {
                 flexWrap: 'wrap',
                 rowGap: '10px',
                 columnGap: "10px",
-                marginTop:"30px"
+                marginTop: "30px"
             }
         }>
             {

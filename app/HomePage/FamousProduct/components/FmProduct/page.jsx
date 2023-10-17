@@ -1,119 +1,100 @@
 // rfec
-import { Box, Button, Rating, ThemeProvider, Typography } from '@mui/material'
+import { Avatar, Box, Button, Card, CardContent, CardMedia, Rating, Stack, ThemeProvider, Typography } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline';
 import { shadows } from '@mui/system';
-import Image from 'next/image';
-import React from 'react'
-import styles from './page.module.css'
-
-
-
+import React, { useState } from 'react'
 
 function FmProduct({ item }) {
+
+  const [isHover, setIshover] = useState(false)
+
+  // handle hover of img box
+  const handleMouseEnter = () => {
+    setIshover(true)
+  }
+
+  // handle hover of img box
+  const handleMouseLeave = () => {
+    setIshover(false)
+  }
+
   return (
-    <Box
-      className={styles['box-navigate']}
-      borderRadius={3}
-      sx={
-        {
-          padding: '14px 14px 22px 14px',
-          boxShadow: 5,
-          width: 'calc(16.7% - 10px)',
-          height: '300px',
-          display: 'flex',
-          flexDirection: 'column',
-          transition: 'all 0.2s',
-          position: 'relative'
-        }
-      }
+    <Card
+      sx={{
+        width: '381px',
+        height: '500px',
+        boxShadow: "10",
+        cursor: "pointer",
+        padding: "12px 12px"
+      }}
+
     >
-      <CssBaseline />
-      <Image
-        alt='course Image'
-        src={item.avatar}
-        height={201}
-        width={200}
-        objectFit='cover'
-        layout='fixed'
-        style={{
-          height: '100px',
-          width: '100%',
-          borderRadius: '8px',
-          objectFit: 'cover'
-        }}
-      />
-      <Box className={styles['title-card']}
-        sx={
-          {
-            marginTop: '10px'
-          }
-        }>
-        <span>{item.email}</span>
-        <span>{item.first_name}</span>
-        <span>this is description about course maybe add later</span>
-      </Box>
-      <Box className={styles['star-rating']} component="fieldset" mb={3} borderColor="transparent" sx={{
-        margin: '0', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', paddingLeft: '0', gap: '2px', marginBlock: '0',
-        marginInlineStart: '0',
-        marginInlineEnd: '0',
-        paddingInlineStart: '0',
-        paddingInlineEnd: '0',
-        borderWidth: '0',
-        paddingBlockEnd: '0'
-      }}>
-        <Rating name="read-only" value={2} size='small' readOnly />
-        <Typography sx={{ fontSize: '10px', fontWeight: '600', color: '#7F56D9', marginTop: '2px' }}>({item.id})</Typography>
-      </Box>
       <Box
         sx={
           {
-            marginTop: "20px",
-            width: '100%',
-            height: '40px',
-            display: 'flex',
-            gap: '5px',
-            alignItems: 'center',
+            height: "200px",
+            width: "100%",
+            overflow: "hidden"
           }
         }
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <Box
+        <CardMedia
           sx={
             {
-              borderRadius: '100%',
-              height: '30px',
-              width: '30px',
+              height: '100%',
+              transform: isHover ? "scale(1.2)" : "scale(1)",
+              transition: "all 0.2s"
             }
           }
-        >
-          <Image
-            alt='avatar'
-            src={item.avatar}
-            height={201}
-            width={200}
-            objectFit='cover'
-            layout='fixed'
-            style={{
-              height: '100%',
-              width: '100%',
-              borderRadius: '100%',
-              objectFit: 'cover'
-            }}
-          />
-        </Box>
-        <Box
-          the
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-start'
-          }}
-        >
-          <Typography variant='body1' sx={{ fontSize: '14px', color: '#101828' }}>Mentor: {item.first_name}</Typography>
-          <Typography variant='body1' sx={{ fontSize: '8px', color: '#667085' }}>so nguoi da dang ky</Typography>
-        </Box>
-        <Button variant="contained" className={styles['btn-learning']}>Learn</Button>
+          image={item.avatar}
+          title="green iguana"
+        />
       </Box>
-    </Box >
+      <CardContent sx={{ p: 0 }}>
+        <Typography marginBottom='20px' variant="h6" component="div" sx={{ fontWeight: "600", color: "#6941C6" }}>
+          Name Of couse
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {item.des.slice(0, 150)}
+        </Typography>
+      </CardContent>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        spacing={{ xs: 1, sm: 2, md: 1 }}
+        alignItems='center'
+      >
+        <Rating name="read-only" value={2} readOnly />
+        <Typography variant="body2" color="text.secondary">(122)</Typography>
+      </Stack>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={{ sm: 2, md: 1 }}
+        alignItems="center"
+        justifyContent='space-between'
+        marginTop='50px'
+      >
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={{ sm: 2, md: 1 }}
+          alignItems="center"
+        >
+          <Avatar alt="Remy Sharp" src={item.avatar} />
+          <Stack
+            direction={{ xs: "colum", sm: "column" }}
+            spacing={{ sm: 2, md: 1 }}
+            alignItems="flex-start"
+            sx={{ maxWidth: '300px' }}
+          >
+            <Typography variant='subtitle2' sx={{ fontWeight: "600" }}>Author</Typography>
+            <Typography variant='body2'>Name</Typography>
+          </Stack>
+        </Stack>
+
+        <Button variant="contained" size='small' sx={{ backgroundColor: "#7F56D9", '&:hover': { backgroundColor: '#7f56d9' }, }}>Contained</Button>
+      </Stack>
+    </Card>
 
   )
 }

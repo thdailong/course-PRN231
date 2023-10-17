@@ -52,9 +52,9 @@ const TitleHome = (props) => {
 
   return (
 
-    <Box sx={{ width: "100%", height: "808px", background: "#FBFAFF", display: "flex", userSelect: "none" ,}}>
+    <Box sx={{ width: "100%", height: "808px", background: "#FBFAFF", display: "flex", userSelect: "none", }}>
       <CssBaseline />
-      <Box sx={{ flex: "1", display: "flex", flexDirection: "column", alignItems: "center", padding:'150px 0 0 75px'}}>
+      <Box sx={{ flex: "1", display: "flex", flexDirection: "column", alignItems: "center", padding: '150px 0 0 75px' }}>
         <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px", padding: "0px 0px 0px 140px", position: "relative" }}>
           <Paper elevation={0} className={styles['hero-title']} sx={{ width: "100%", backgroundColor: "#FBFAFF", }}>
             <Typography className={styles['hero-title']} sx={{ fontSize: "40px", fontWeight: "600", }}>
@@ -85,7 +85,7 @@ const TitleHome = (props) => {
         </Box>
 
       </Box>
-      <Box sx={{ flex: "1", display: 'flex', padding:'16px 75px 0 50px', alignItems: 'center' }}>
+      <Box sx={{ flex: "1", display: 'flex', padding: '16px 75px 0 50px', alignItems: 'center' }}>
         <Box sx={
           {
             border: 'solid #7F56D9 2px',
