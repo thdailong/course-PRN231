@@ -1,7 +1,23 @@
-import React from "react";
+'use client'
+import UserInfoForm from '@/app/components/UserPage/UserInfoForm'
+import { Paper } from '@mui/material'
 
-const Home = () => {
-	return <div>User page</div>;
-};
+const obj = {
+  id: 1,
+  username: 'kaiz0402',
+  name: 'Hung Phu',
+  email: 'phunlh2001@gmail.com',
+  address: 'Dong Thap',
+  dob: '2001-04-02',
+  desc: 'Hello buddies',
+}
 
-export default Home;
+const Page = () => {
+  return (
+    <Paper elevation={3} sx={{ width: '100%', p: 3 }}>
+      <UserInfoForm {...obj} />
+    </Paper>
+  )
+}
+
+export default Page

@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ['reqres.in'], // Add your domain here
-      },
+  images: {
+    domains: ['reqres.in', 'images.unsplash.com'],
+  },
 }
 
 module.exports = nextConfig
