@@ -1,0 +1,8 @@
+.navigation-box {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.navigation-box.active {
+    opacity: 1;
+}
