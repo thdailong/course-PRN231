@@ -1,11 +1,21 @@
 "use client"
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { GetDataById } from '../[Detail]/util'
+import { useRouter } from 'next/navigation'
 
-export default function CardPrice() {
+export default function CardPrice({ passParam }) {
 
+    const router = useRouter()
     // usestate place
     const [hoverImg, setHoverImg] = useState(false)
+
+    let data = GetDataById(passParam)
+
+    const handleGetByID = (e) => {
+        const IdProduct = data.id
+        router.push(`/PaymentPage/${IdProduct}`)
+    }
 
 
     return (
@@ -17,9 +27,9 @@ export default function CardPrice() {
                     right: "65px",
                     maxWidth: "350px",
                     boxShadow: "10",
-                    userSelect:"none",
-                    paddingBottom:"34px",
-                    borderRadius:"10px",
+                    userSelect: "none",
+                    paddingBottom: "34px",
+                    borderRadius: "10px",
                 }
             }
         >
@@ -56,8 +66,8 @@ export default function CardPrice() {
                     species, ranging across all continents except Antarctica
                 </Typography>
             </CardContent>
-            <CardActions sx={{display:"flex", justifyContent:"center"}}>
-                <Button variant='contained' size="small" sx={{backgroundColor:"#7F56D9"}}>Buy the course</Button>
+            <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+                <Button variant='contained' size="small" sx={{ backgroundColor: "#7F56D9" }} onClick={e => handleGetByID(e)}>Buy the course</Button>
             </CardActions>
         </Card>
     )

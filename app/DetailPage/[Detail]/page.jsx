@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 import { GetDataById } from './util';
 import DetailHero from '../DetailHero/page';
@@ -11,23 +11,23 @@ import CardPrice from '../CardPrice/Page';
 
 export default function page({ params }) {
 
-  console.log(params.Detail);
-  let data = GetDataById(params.Detail)
-  console.log(data);
+  // const [dataState, Setdata] = useState()
+  const[passParam, setParam] = useState(params.Detail)
+
   return (
     <Box
-    sx={
-      {
-        position:"relative"
+      sx={
+        {
+          position: "relative"
+        }
       }
-    }
     >
-      <HomeNavBar/>
-      <DetailHero/>
-      <DetailBody/>
-      <Describe/>
-      <CourseSubject/>
-      <CardPrice/>
+      <HomeNavBar />
+      <DetailHero />
+      <DetailBody />
+      <Describe />
+      <CourseSubject />
+      <CardPrice passParam={passParam}/>
     </Box>
   )
 }
