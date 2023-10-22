@@ -1,10 +1,12 @@
-"use client";
-import { Box } from "@mui/material";
+'use client'
+import UserNavPage from '@/app/components/UserNavPage/page'
+import { Box } from '@mui/material'
 
 export default function Layout({ children }) {
   return (
-      <Box>
-        {children}
-      </Box>
+    <Box>
+      <UserNavPage />
+      {children}
+    </Box>
   )
 }

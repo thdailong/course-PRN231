@@ -1,13 +1,11 @@
 "use client"
-import React, { useEffect, useState } from 'react'
-import { Box } from '@mui/material'
-import { GetDataById } from './util';
-import DetailHero from '../DetailHero/page';
-import HomeNavBar from '@/app/components/HomePage/NavBar';
-import DetailBody from '../DetailBody/page';
-import Describe from '../Describe/page';
-import CourseSubject from '../CourseSubject/Page';
+import { Box } from '@mui/material';
+import { useState } from 'react';
 import CardPrice from '../CardPrice/Page';
+import CourseSubject from '../CourseSubject/Page';
+import Describe from '../Describe/page';
+import DetailBody from '../DetailBody/page';
+import DetailHero from '../DetailHero/page';
 
 export default function page({ params }) {
 
@@ -22,7 +20,6 @@ export default function page({ params }) {
         }
       }
     >
-      <HomeNavBar />
       <DetailHero />
       <DetailBody />
       <Describe />

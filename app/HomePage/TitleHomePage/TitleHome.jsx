@@ -10,8 +10,11 @@ import asmtHero from '../images/heroAsm.png'
 import circleOnline from '../images/circleOnline.png'
 import lectureHero from '../images/lecturehero.svg'
 import womenCircleHero from '../images/circleWomenHero.svg'
+import { useRouter } from 'next/navigation';
 
 const TitleHome = (props) => {
+
+  const router = useRouter()
 
   const BootstrapButton = styled(Button)({
     boxShadow: 'none',
@@ -50,6 +53,10 @@ const TitleHome = (props) => {
   });
 
 
+  const handleViewall =() =>{
+    router.push("/ViewAllProduct")
+  }
+
   return (
 
     <Box sx={{ width: "100%", height: "808px", background: "#FBFAFF", display: "flex", userSelect: "none", }}>
@@ -76,7 +83,7 @@ const TitleHome = (props) => {
           />
         </Box>
         <Box sx={{ display: "flex", width: "100%", padding: "0 0 0 140px", justifyContent: "flex-start", gap: "20px", marginTop: "30px" }}>
-          <Button variant="contained" disableElevation sx={{ backgroundColor: "#7F56D9", '&:hover': { backgroundColor: '#6941C6' } }}>
+          <Button variant="contained" disableElevation sx={{ backgroundColor: "#7F56D9", '&:hover': { backgroundColor: '#6941C6' } }} onClick={handleViewall}>
             Bắt đầu học
           </Button>
           <BootstrapButton variant="contained" disableElevation sx={{ color: "#6941C6", fontWeight: "600" }}>

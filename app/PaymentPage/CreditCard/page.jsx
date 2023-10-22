@@ -12,7 +12,6 @@ export default function Credit() {
             <Box>this is qr</Box>
             :
             <Box
-                m="60px 0 0 500px"
                 p="30px"
                 sx={
                     {
