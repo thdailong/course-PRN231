@@ -14,10 +14,13 @@
     "@mui/icons-material": "^5.14.11",
     "@mui/material": "^5.14.11",
     "@reduxjs/toolkit": "^1.9.7",
+    "react-redux": "^8.1.3",
+    "axios": "^1.5.1",
+    "keen-slider": "^6.8.6",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-redux": "^8.1.3"
+    "react-paginate": "^8.2.0"
   },
   "devDependencies": {
     "eslint": "latest",

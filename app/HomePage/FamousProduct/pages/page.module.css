@@ -1,0 +1,55 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pagination li {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  /* Biến đổi nút thành hình tròn */
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pagination li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+
+.pagination__link {
+  font-weight: bold;
+}
+
+.pagination__link--active a {
+  color: #fff;
+  background: #7F56D9;
+}
+
+.pagination__link--disabled a {
+  color: rgb(198, 197, 202);
+  border: 1px solid rgb(198, 197, 202);
+}
+
+.pagination-dot {
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+}
+
+.btn-famous {
+  border-color: #7F56D9;
+  color: #7F56D9;
+}
