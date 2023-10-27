@@ -31,6 +31,7 @@ const page = () => {
       url: ADMIN_ROUTES.REPORT,
     },
   ]
+
   return (
     <>
       <Typography component={'h2'} variant="h4" mb={2}>

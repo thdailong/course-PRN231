@@ -8,6 +8,7 @@ import NewspaperIcon from '@mui/icons-material/Newspaper'
 import CardAdmin from '@/app/components/Admin/OverViewAdmin/CardAdmin'
 import TableComponent from '@/app/components/Table'
 import { ADMIN_ROUTES } from '@/app/constant/constant'
+import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 
 const page = () => {
   const OverviewCards = [
@@ -40,6 +41,7 @@ const page = () => {
       url: ADMIN_ROUTES.REPORT,
     },
   ]
+
   return (
     <>
       <Grid container columnSpacing={2} mb={3}>

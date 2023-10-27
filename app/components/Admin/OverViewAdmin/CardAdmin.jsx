@@ -2,8 +2,11 @@ import { Box, Button, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import EastIcon from '@mui/icons-material/East'
+import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 
 const CardAdmin = ({ title, value, Icon, colorIcon, url }) => {
+  const user = useShallowEqualSelector((state) => state.user)
+  console.log(user)
   const route = useRouter()
   const onClickRedirect = () => {
     route.push(url)
