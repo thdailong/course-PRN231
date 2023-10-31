@@ -8,6 +8,9 @@ import FileCopyIcon from '@mui/icons-material/FileCopy'
 import LockIcon from '@mui/icons-material/Lock'
 import SchoolIcon from '@mui/icons-material/School'
 import { Box, Grid } from '@mui/material'
+import { useEffect } from 'react'
+import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
+import { useRouter } from 'next/navigation'
 
 const options = [
   { id: 1, label: 'View Profile', path: '/user', icon: <AccountCircleIcon /> },
@@ -27,6 +30,16 @@ const options = [
 ]
 
 const Layout = ({ children }) => {
+  const { isLogin } = useShallowEqualSelector((state) => state.user)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isLogin) {
+      router.push('/auth/login')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Box sx={{ backgroundColor: '#dfe6e9' }}>
       <UserNavBar />
