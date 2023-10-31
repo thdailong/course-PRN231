@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Alert, Snackbar } from '@mui/material'
 import { useDispatch } from 'react-redux'
