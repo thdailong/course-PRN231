@@ -1,5 +1,6 @@
 import { ACCESS_TOKEN } from '@/app/constant/constant'
 import { readCookie } from '@/app/utils/cookies'
+import axios from 'axios'
 
 export default class Client {
   constructor(server = process.env.REACT_APP_API_URL) {
@@ -24,7 +25,7 @@ export default class Client {
     try {
       res = await this.client.get(url, payload || {})
     } catch (e) {
-      console.log(e)
+      throw new Error(e)
     }
     return res
   }
@@ -34,7 +35,7 @@ export default class Client {
     try {
       res = await this.client.post(url, payload || {}, config)
     } catch (e) {
-      console.log(e)
+      throw new Error(e)
     }
     return res
   }
@@ -44,7 +45,7 @@ export default class Client {
     try {
       res = await this.client.put(url, payload || {})
     } catch (e) {
-      console.log(e)
+      throw new Error(e)
     }
     return res
   }
@@ -54,7 +55,7 @@ export default class Client {
     try {
       res = await this.client.delete(url, payload || {})
     } catch (e) {
-      console.log(e)
+      throw new Error(e)
     }
     return res
   }
@@ -64,7 +65,7 @@ export default class Client {
     try {
       res = await this.client.patch(url, payload || {}, config)
     } catch (e) {
-      console.log(e)
+      throw new Error(e)
     }
     return res
   }
