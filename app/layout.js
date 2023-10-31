@@ -1,9 +1,7 @@
-import { Provider } from 'react-redux'
-import './globals.css'
-import { Inter } from 'next/font/google'
-import store from '@/app/redux/store'
-import ReduxContainer from '@/app/components/ReduxContainer'
 import CustomSnackbar from '@/app/components/CustomSnackbar'
+import ReduxContainer from '@/app/components/ReduxContainer'
+import { Inter } from 'next/font/google'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
