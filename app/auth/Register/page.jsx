@@ -15,17 +15,17 @@ import React, { useEffect, useState } from 'react'
 import * as Style from '@/app/auth/register/Register.styled'
 import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 import { useRouter } from 'next/navigation'
+import useComponentWillMount from '@/app/hooks/useComponentWillMount'
 
 const RegisterForm = () => {
   const { isLogin } = useShallowEqualSelector((state) => state.user)
   const router = useRouter()
 
-  useEffect(() => {
+  useComponentWillMount(() => {
     if (isLogin) {
       router.push('/home')
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  })
 
   const [formData, setFormData] = useState({
     username: '',
