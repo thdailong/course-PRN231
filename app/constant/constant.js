@@ -7,4 +7,5 @@ export const ADMIN_ROUTES = {
 }
 
 export const ACCESS_TOKEN = 'access_token'
-export const ROLE = 'role'
+export const USER_ROLE = 'user_role'
+export const USER_ID = 'user_id'

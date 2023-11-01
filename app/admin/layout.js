@@ -57,7 +57,7 @@ const SideBar = () => {
   const path = usePathname()
   const router = useRouter()
   const { isLogin } = useShallowEqualSelector((state) => state.user)
-  const isAdmin = readCookie(ROLE) === 'Admin'
+  const isAdmin = readCookie(USER_ROLE) === 'Admin'
 
   useComponentWillMount(() => {
     if (!isLogin) {
