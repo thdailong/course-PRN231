@@ -1,11 +1,9 @@
 "use client"
-import { AppBar, Avatar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
-import AdbIcon from '@mui/icons-material/Adb';
-import MenuIcon from '@mui/icons-material/Menu';
-import React from 'react'
+import { AppBar, Avatar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
-import logo from './images/c.png'
 import { useRouter } from 'next/navigation';
+import React from 'react';
+import logo from './images/c.png';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -38,7 +36,7 @@ export default function UserNavPage() {
 
 
   return (
-    <AppBar position="static" sx={{backgroundColor:"#7F56D9", boxShadow:"10"}}>
+    <AppBar position="static" sx={{backgroundColor:"#7F56D9", boxShadow:"10",position:"fixed", display:{xs:"none", md:"flex"}, zIndex:"10"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Image

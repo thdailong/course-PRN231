@@ -3,9 +3,13 @@ import { Box, Button, Card, CardActionArea, CardMedia, IconButton, Typography } 
 import ShareIcon from "@mui/icons-material/Share";
 import React, { useState } from 'react'
 import styles from './page.module.css'
+import { useRouter } from 'next/navigation';
 
 
 export default function OwProductCard(props) {
+
+  const router = useRouter()
+
   const { item } = props
 
   const [catchHover, setCatchHover] = useState(false)
@@ -20,10 +24,16 @@ export default function OwProductCard(props) {
     setCatchHover(false)
   }
 
+  const handleNavigate = () =>{
+    // router.push(`/Learning/${item.id}`)
+    router.push(`/Learning/${item.id}?documentID=1&ChapterId=1`)
+   
+  }
+
   return (
-    <Box sx={{ width: "calc(25% - 5px)", minWidth: 'calc(25% - 5px)', height: '100%', borderRadius: "20px", boxShadow: "10", padding: "10px 10px 5px 10px", display: 'flex', flexDirection: "column", alignItems: "flex-start" }}>
+    <Box onClick={handleNavigate} sx={{width: "calc(25% - 5px)", minWidth: 'calc(25% - 5px)', height: '100%', borderRadius: "20px", boxShadow: "10", padding: "10px 10px 5px 10px", display: 'flex', flexDirection: "column", alignItems: "flex-start" }}>
       <Card sx={{ minWidth: '100%', minHeight: '150px', borderRadius: "10px", cursor: 'pointer', overflow: "hidden", position: 'relative' }}>
-        <CardActionArea>
+        <CardActionArea >
           <CardMedia
             sx={{ height: 150, objectFit: 'cover' }}
             image={item.avatar}
