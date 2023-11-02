@@ -4,13 +4,11 @@ import React, { useState } from 'react'
 import { GetDataById } from '../[Detail]/util'
 import { useRouter } from 'next/navigation'
 
-export default function CardPrice({ passParam }) {
+export default function CardPrice({ data }) {
 
     const router = useRouter()
     // usestate place
     const [hoverImg, setHoverImg] = useState(false)
-
-    let data = GetDataById(passParam)
 
     const handleGetByID = (e) => {
         const IdProduct = data.id

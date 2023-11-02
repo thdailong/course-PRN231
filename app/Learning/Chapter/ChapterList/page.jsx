@@ -8,7 +8,7 @@ export default function ChapterList({ chapterData }) {
             {
                 chapterData?.Chapters.length  ? chapterData.Chapters.map((item, idx) => (
                     <ChapterFeature key={idx} item={item} />
-                )):"Khoa hoc khong hien hanh"
+                )):"The course does not exist yet"
             }
         </Box>
 

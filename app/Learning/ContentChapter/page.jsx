@@ -11,12 +11,12 @@ export default function ContentChapter({ paramsPage }) {
   const documentID = searchParams.get('documentID')
   const chapterID = searchParams.get('ChapterId')
 
-  // chekc if we have querystring
+  //Checks the existence of the query string
   const documentData = () => {
     if (documentID && chapterID) {
       return getDocumentByCourse(paramsPage, chapterID, documentID)
     }
-    else return "khong co gi het"
+    else return
   }
 
   return (
