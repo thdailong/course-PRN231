@@ -39,7 +39,7 @@ export default function Login() {
   return (
     <Box
       sx={{
-        height: '100vh',
+        minHeight: '100vh',
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
