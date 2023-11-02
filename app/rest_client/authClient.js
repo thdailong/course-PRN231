@@ -7,5 +7,5 @@ export const login = async (payload) => {
 }
 
 export const register = async (payload) => {
-  return http.post('auth/identity/register', payload)
+  return http.post('auth/identity/regist', payload)
 }

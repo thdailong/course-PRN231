@@ -3,7 +3,7 @@ import { readCookie } from '@/app/utils/cookies'
 import axios from 'axios'
 
 export default class Client {
-  constructor(server = process.env.REACT_APP_API_URL) {
+  constructor(server = process.env.NEXT_PUBLIC_API_URL) {
     this.baseUrl = server || window.location.origin + '/'
     this.client = axios.create({
       baseURL: this.baseUrl,
