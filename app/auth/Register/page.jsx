@@ -1,4 +1,7 @@
 'use client'
+import * as Style from '@/app/auth/register/Register.styled'
+import useComponentWillMount from '@/app/hooks/useComponentWillMount'
+import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 import { register } from '@/app/rest_client/authClient'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import Button from '@mui/material/Button'
@@ -11,11 +14,45 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import * as Style from '@/app/auth/register/Register.styled'
-import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 import { useRouter } from 'next/navigation'
-import useComponentWillMount from '@/app/hooks/useComponentWillMount'
+import { useState } from 'react'
+
+const TextInput = ({ label, name, onChange, value }) => {
+  return (
+    <TextField
+      label={label}
+      variant="outlined"
+      name={name}
+      fullWidth
+      margin="normal"
+      onChange={onChange}
+      value={value}
+    />
+  )
+}
+
+const PasswordInput = ({ label, name, onChange, value, type, onClick }) => {
+  return (
+    <FormControl fullWidth variant="outlined" margin="normal">
+      <InputLabel htmlFor={name}>{label}</InputLabel>
+      <OutlinedInput
+        id={name}
+        type={type ? 'text' : 'password'}
+        name={name}
+        onChange={onChange}
+        value={value}
+        endAdornment={
+          <InputAdornment position="end">
+            <IconButton onClick={onClick} edge="end">
+              {type ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        }
+        label={label}
+      />
+    </FormControl>
+  )
+}
 
 const RegisterForm = () => {
   const { isLogin } = useShallowEqualSelector((state) => state.user)
@@ -61,6 +98,51 @@ const RegisterForm = () => {
     }
   }
 
+  const inputs = [
+    {
+      id: 1,
+      label: 'Username',
+      name: 'username',
+      onChange: handleInputChange,
+      value: formData.username,
+    },
+    {
+      id: 2,
+      label: 'Full Name',
+      name: 'fullName',
+      onChange: handleInputChange,
+      value: formData.fullName,
+    },
+    {
+      id: 3,
+      label: 'Email',
+      name: 'email',
+      onChange: handleInputChange,
+      value: formData.email,
+    },
+  ]
+
+  const passwords = [
+    {
+      id: 1,
+      label: 'Password',
+      name: 'password',
+      onChange: handleInputChange,
+      value: formData.password,
+      type: showPassword,
+      onClick: handleShowPassword,
+    },
+    {
+      id: 2,
+      label: 'Confirm Password',
+      name: 'confirmPassword',
+      onChange: handleInputChange,
+      value: formData.confirmPassword,
+      type: showConfirmPassword,
+      onClick: handleShowConfirmPassword,
+    },
+  ]
+
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" sx={Style.Title}>
@@ -70,69 +152,11 @@ const RegisterForm = () => {
         Sign up to receive offers and manage your courses better
       </Typography>
       <form onSubmit={handleSubmit}>
-        <TextField
-          label="Username"
-          variant="outlined"
-          name="username"
-          fullWidth
-          margin="normal"
-          onChange={handleInputChange}
-          value={formData.username}
-        />
-        <TextField
-          label="Full Name"
-          variant="outlined"
-          name="fullName"
-          fullWidth
-          margin="normal"
-          onChange={handleInputChange}
-          value={formData.fullName}
-        />
-        <TextField
-          label="Email"
-          variant="outlined"
-          name="email"
-          fullWidth
-          margin="normal"
-          onChange={handleInputChange}
-          value={formData.email}
-        />
-        <FormControl fullWidth variant="outlined" margin="normal">
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <OutlinedInput
-            id="password"
-            type={showPassword ? 'text' : 'password'}
-            name="password"
-            onChange={handleInputChange}
-            value={formData.password}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton onClick={handleShowPassword} edge="end">
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-        <FormControl fullWidth variant="outlined" margin="normal">
-          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
-          <OutlinedInput
-            id="confirmPassword"
-            type={showConfirmPassword ? 'text' : 'password'}
-            name="confirmPassword"
-            onChange={handleInputChange}
-            value={formData.confirmPassword}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton onClick={handleShowConfirmPassword} edge="end">
-                  {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Confirm Password"
-          />
-        </FormControl>
+        {inputs && inputs.map((obj) => <TextInput key={obj.id} {...obj} />)}
+
+        {passwords &&
+          passwords.map((obj) => <PasswordInput key={obj.id} {...obj} />)}
+
         <Button
           type="submit"
           variant="contained"
