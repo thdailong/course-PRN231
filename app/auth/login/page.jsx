@@ -17,10 +17,13 @@ export default function Login() {
   const { login, loginFailure } = useActions(userActions)
   const router = useRouter()
   const { isLogin } = useShallowEqualSelector((state) => state.user)
+  const isAdmin = readCookie(USER_ROLE) === 'Admin'
 
   useEffect(() => {
-    if (isLogin) {
-      router.push('/home')
+    if (isLogin && isAdmin) {
+      router.push('/admin')
+    } else if (isLogin) {
+      router.push('/HomePage')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin])
@@ -85,7 +88,9 @@ export default function Login() {
           variant="filled"
           onChange={(e) => setPassword(e.target.value)}
           helperText={
-            isPasswordValid(password) ? 'passsword cant be empty or have space' : ''
+            isPasswordValid(password)
+              ? 'passsword cant be empty or have space'
+              : ''
           }
         />
         <Box className={styles['login-btn']}>
