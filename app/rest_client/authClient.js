@@ -1,6 +1,6 @@
 import Client from './baseClient'
 
-const http = new Client('http://localhost:1111')
+const http = new Client()
 
 export const login = async (payload) => {
   return http.post('auth/identity/login', payload)

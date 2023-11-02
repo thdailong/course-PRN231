@@ -39,4 +39,4 @@ package-lock.json
 yarn.lock
 
 # environment
-.env
+.env.local
