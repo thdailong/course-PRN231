@@ -4,6 +4,7 @@ export const ADMIN_ROUTES = {
   COURSE: '/admin/course',
   PAYMENT: '/admin/payment',
   USER: '/admin/user',
+  APPROVAL: '/admin/approval',
 }
 
 export const ACCESS_TOKEN = 'access_token'
