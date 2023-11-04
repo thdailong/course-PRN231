@@ -2,8 +2,17 @@ import { Avatar, Box, Card, CardContent, CardMedia, IconButton, Rating, Typograp
 import ShareIcon from "@mui/icons-material/Share";
 import React, { useState } from 'react'
 import styles from './page.module.css'
+import { useRouter } from 'next/navigation';
 
 export default function AllProductCard({ item }) {
+
+    const router = useRouter()
+
+    const handleGetByID = (e) =>{
+        const IdProduct = item.id
+        router.push(`/DetailPage/${IdProduct}`)
+    }
+
     return (
         <Box
             sx={
@@ -18,6 +27,7 @@ export default function AllProductCard({ item }) {
                 }
             }
             className={styles['box-contain']}
+              onClick={e => handleGetByID(e)}
         >
             <Box component='span' className={styles.span}>120.000 đ</Box>
             <Card

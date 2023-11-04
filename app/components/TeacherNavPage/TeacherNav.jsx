@@ -8,9 +8,9 @@ import React, { useState } from 'react';
 import logo from './images/c.png';
 
 const pages = ['Home', 'Course'];
-const settings = ['Profile', 'Upgrade account'];
+const settings = ['Profile', 'Create Course'];
 
-export default function UserNavPage() {
+export default function TeacherNav() {
 
   const router = useRouter()
 

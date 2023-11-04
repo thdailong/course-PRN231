@@ -20,6 +20,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-html5video": "^2.5.1",
     "react-paginate": "^8.2.0"
   },
   "devDependencies": {
