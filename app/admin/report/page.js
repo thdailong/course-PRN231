@@ -44,6 +44,11 @@ const page = () => {
             minWidth: 170,
             render: ({ title }) => <Typography>{title}</Typography>,
           },
+          {
+            id: 'calories',
+            label: 'NX',
+            render: ({ title }) => <Typography>{title}</Typography>,
+          },
         ]}
         theme="light"
         rows={OverviewCards}

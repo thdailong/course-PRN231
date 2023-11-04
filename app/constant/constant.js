@@ -5,3 +5,7 @@ export const ADMIN_ROUTES = {
   PAYMENT: '/admin/payment',
   USER: '/admin/user',
 }
+
+export const ACCESS_TOKEN = 'access_token'
+export const USER_ROLE = 'user_role'
+export const USER_ID = 'user_id'

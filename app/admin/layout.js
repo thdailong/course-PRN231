@@ -1,5 +1,14 @@
 'use client'
 import FullScreenLayout from '@/app/components/Layout/FullScreenLayout'
+import { ADMIN_ROUTES, ROLE } from '@/app/constant/constant'
+import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
+import { readCookie } from '@/app/utils/cookies'
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
+import PersonIcon from '@mui/icons-material/Person'
+import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred'
+import SchoolIcon from '@mui/icons-material/School'
+import SubjectIcon from '@mui/icons-material/Subject'
 import {
   AppBar,
   Box,
@@ -12,15 +21,8 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material'
-import React from 'react'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
-import SubjectIcon from '@mui/icons-material/Subject'
-import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred'
-import SchoolIcon from '@mui/icons-material/School'
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
-import PersonIcon from '@mui/icons-material/Person'
 import { usePathname, useRouter } from 'next/navigation'
-import { ADMIN_ROUTES } from '@/app/constant/constant'
+import React from 'react'
 
 const sideBarWidth = 300
 const SideBarItems = [
@@ -54,6 +56,17 @@ const SideBarItems = [
 const SideBar = () => {
   const path = usePathname()
   const router = useRouter()
+  const { isLogin } = useShallowEqualSelector((state) => state.user)
+  const isAdmin = readCookie(USER_ROLE) === 'Admin'
+
+  useComponentWillMount(() => {
+    if (!isLogin) {
+      router.push('/auth/login')
+    } else if (!isAdmin) {
+      router.push('/home')
+    }
+  })
+
   const onClickRedirect = (url) => {
     router.push(url)
   }
