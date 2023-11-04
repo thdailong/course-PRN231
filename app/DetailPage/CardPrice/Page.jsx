@@ -1,8 +1,7 @@
 "use client"
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import { GetDataById } from '../[Detail]/util'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function CardPrice({ data }) {
 
