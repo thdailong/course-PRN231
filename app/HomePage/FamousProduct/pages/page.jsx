@@ -1,14 +1,16 @@
 "use client"
-import React, { useEffect, useState } from 'react'
-import { Box, Button, Pagination, Typography } from '@mui/material'
-import ReactPaginate from 'react-paginate';
-import styles from './page.module.css'
-import ListFamous from '../components/ListFamousProduct/page'
-import { getPosts } from '../../page';
+import { Box, Button, Pagination, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import ListFamous from '../components/ListFamousProduct/page';
 import { getAllCard, getAllProduct } from './apiCalling';
+import styles from './page.module.css';
 // rfec
 
 function ProductNav() {
+
+    const router = useRouter()
+
     const[currentPage, setCurrentPage] = useState(1)
     const [dataProduct, setDataProduct] = useState([])
     const [totalProduct, setTotalProduct] = useState()
@@ -49,6 +51,10 @@ function ProductNav() {
     const handlePageClick = (event) => {
         getProduct(+event.selected + 1)
     }
+
+    const navViewmore = () =>{
+        router.push('/ViewAllProduct')
+      }
     return (
         <Box sx={
             {
@@ -88,7 +94,7 @@ function ProductNav() {
             }>
                 <ListFamous dataProduct={displayedData} />
                 <Pagination count={pageCount} color="secondary" onChange={handlePagnating} sx={{ marginTop: "30px", width: "100%", display: "flex", justifyContent: "center" }} />
-                <Button variant="outlined" className={styles['btn-famous']}>View more</Button>
+                <Button variant="outlined" className={styles['btn-famous']}  onClick={navViewmore}>View more</Button>
             </Box>
         </Box>
     )

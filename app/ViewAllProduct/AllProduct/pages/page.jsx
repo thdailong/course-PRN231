@@ -2,7 +2,7 @@
 import { Box, FormControl, InputLabel, MenuItem, Pagination, Select, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import ListAllProduct from '../components/listAllProduct/page'
-import { GetAllData, GetData, GetDataByCategory } from './callAPI'
+import { GetData } from './callAPI'
 
 export default function AllCourseUser() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -28,10 +28,10 @@ export default function AllCourseUser() {
     }
 
     // set category my choose
-    const handleCategory = (e) =>{
+    const handleCategory = (e) => {
         setCategory(e.target.value)
     }
-    
+
     return (
         <Box sx={{ height: 'auto', width: "100%", marginTop: "30px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <Stack
