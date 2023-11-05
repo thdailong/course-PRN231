@@ -65,8 +65,8 @@ const RegisterForm = () => {
   })
 
   const [formData, setFormData] = useState({
-    username: '',
-    fullName: '',
+    userName: '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -102,16 +102,16 @@ const RegisterForm = () => {
     {
       id: 1,
       label: 'Username',
-      name: 'username',
+      name: 'userName',
       onChange: handleInputChange,
-      value: formData.username,
+      value: formData.userName,
     },
     {
       id: 2,
       label: 'Full Name',
-      name: 'fullName',
+      name: 'name',
       onChange: handleInputChange,
-      value: formData.fullName,
+      value: formData.name,
     },
     {
       id: 3,
@@ -169,7 +169,7 @@ const RegisterForm = () => {
       </form>
       <Typography variant="body2" sx={Style.BottomText}>
         Already have an account?{' '}
-        <Link href="/login" color="primary">
+        <Link href="/auth/login" color="primary">
           Log in
         </Link>
       </Typography>

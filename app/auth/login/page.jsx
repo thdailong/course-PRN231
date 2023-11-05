@@ -1,20 +1,24 @@
 'use client'
 import styles from '@/app/auth/login/page.module.css'
 import { isPasswordValid, isUserValid } from '@/app/auth/utils/utils'
+import { USER_ROLE } from '@/app/constant/constant'
 import useActions from '@/app/hooks/useActions'
 import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 import { userActions } from '@/app/redux/reducers/user'
 import * as auth from '@/app/rest_client/authClient'
+import { readCookie } from '@/app/utils/cookies'
 import { Box, Button, TextField } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import * as snackbar from '@/app/redux/reducers/snackbar'
 
 export default function Login() {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
   const { login, loginFailure } = useActions(userActions)
+  const { show } = useActions(snackbar)
   const router = useRouter()
   const { isLogin } = useShallowEqualSelector((state) => state.user)
   const isAdmin = readCookie(USER_ROLE) === 'Admin'
@@ -33,8 +37,16 @@ export default function Login() {
       try {
         const res = await auth.login({ userName, password })
         login(res.data)
-      } catch (error) {
-        loginFailure(error.message)
+        show({
+          message: 'Login successfully',
+          severity: snackbar.SNACKBAR_SEVERITY.SUCCESS,
+        })
+      } catch (err) {
+        loginFailure(err.response.data.errors[0])
+        show({
+          message: 'Invalid username or password',
+          severity: snackbar.SNACKBAR_SEVERITY.ERROR,
+        })
       }
     }
   }

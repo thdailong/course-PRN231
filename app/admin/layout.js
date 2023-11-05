@@ -63,7 +63,7 @@ const SideBar = () => {
     if (!isLogin) {
       router.push('/auth/login')
     } else if (!isAdmin) {
-      router.push('/home')
+      router.push('/HomePage')
     }
   })
 
