@@ -60,8 +60,6 @@ const CardAdmin = ({ title, value, Icon, colorIcon, url }) => {
           p: 2,
           borderRadius: '50%',
           color: '#FFF',
-          width: 24,
-          height: 24,
         }}
       >
         <Icon />

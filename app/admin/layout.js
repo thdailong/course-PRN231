@@ -1,6 +1,7 @@
 'use client'
 import FullScreenLayout from '@/app/components/Layout/FullScreenLayout'
-import { ADMIN_ROUTES, ROLE } from '@/app/constant/constant'
+import { ADMIN_ROUTES, ROLE, USER_ROLE } from '@/app/constant/constant'
+import useComponentWillMount from '@/app/hooks/useComponentWillMount'
 import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 import { readCookie } from '@/app/utils/cookies'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
@@ -9,6 +10,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred'
 import SchoolIcon from '@mui/icons-material/School'
 import SubjectIcon from '@mui/icons-material/Subject'
+import VerifiedIcon from '@mui/icons-material/Verified'
 import {
   AppBar,
   Box,
@@ -50,6 +52,11 @@ const SideBarItems = [
     name: 'Users',
     href: ADMIN_ROUTES.USER,
     icon: ManageAccountsIcon,
+  },
+  {
+    name: 'Approval',
+    href: ADMIN_ROUTES.APPROVAL,
+    icon: VerifiedIcon,
   },
 ]
 

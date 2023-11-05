@@ -1,70 +1,107 @@
-"use client"
-import { AppBar, Avatar, Box, Button, Container, IconButton, InputBase, Menu, MenuItem, Stack, Toolbar, Tooltip, Typography } from '@mui/material';
-import Image from 'next/image';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import logo from './images/c.png';
+'use client'
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  InputBase,
+  Menu,
+  MenuItem,
+  Stack,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from '@mui/material'
+import Image from 'next/image'
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
+import logo from './images/c.png'
 
-const pages = ['Home', 'Course'];
-const settings = ['Profile', 'Upgrade account'];
+const pages = [
+  { text: 'Home', link: '/' },
+  { text: 'Course', link: '/ViewAllProduct' },
+]
+const settings = ['Profile', 'Upgrade account']
 
 export default function UserNavPage() {
-
   const router = useRouter()
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null)
+  const [anchorElUser, setAnchorElUser] = React.useState(null)
   const [search, setSearch] = useState('')
 
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+    setAnchorElNav(event.currentTarget)
+  }
   const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const navToHome = () => {
-    router.push('/HomePage')
+    setAnchorElUser(event.currentTarget)
   }
 
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null)
+  }
+
+  const onRedirect = (link) => {
+    router.push(link)
+  }
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null)
+  }
+
+  const navToHome = () => {
+    router.push('/')
+  }
 
   return (
-    <AppBar position="static" sx={{ p: "0 20px", backgroundColor: "#7F56D9", boxShadow: "10", position: "fixed", display: { xs: "none", md: "block" }, zIndex: "10" }}>
-      <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
-        <Stack direction='row' alignItems='center'>
+    <AppBar
+      position="static"
+      sx={{
+        p: '0 20px',
+        backgroundColor: '#7F56D9',
+        boxShadow: '10',
+        position: 'fixed',
+        display: { xs: 'none', md: 'block' },
+        zIndex: '10',
+      }}
+    >
+      <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+        <Stack direction="row" alignItems="center">
           <Image
             src={logo}
             width={40}
             height={40}
             alt="Picture of the author"
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
             onClick={navToHome}
           />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.text}
+                onClick={() => onRedirect(page.link)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.text}
               </Button>
             ))}
           </Box>
         </Stack>
         <Box
           component="form"
-          sx={{ ml: "100px", p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, backgroundColor: "white", borderRadius: "10px" }}
+          sx={{
+            ml: '100px',
+            p: '2px 4px',
+            display: 'flex',
+            alignItems: 'center',
+            width: 400,
+            backgroundColor: 'white',
+            borderRadius: '10px',
+          }}
         >
           <IconButton sx={{ p: '10px' }} aria-label="menu">
             <MenuIcon />
@@ -72,7 +109,7 @@ export default function UserNavPage() {
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="Find course"
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
             <SearchIcon />
@@ -109,6 +146,5 @@ export default function UserNavPage() {
         </Box>
       </Toolbar>
     </AppBar>
-
   )
 }
