@@ -25,7 +25,7 @@ export default class Client {
     try {
       res = await this.client.get(url, payload || {})
     } catch (e) {
-      throw new Error(e)
+      throw e
     }
     return res
   }
@@ -35,7 +35,7 @@ export default class Client {
     try {
       res = await this.client.post(url, payload || {}, config)
     } catch (e) {
-      throw new Error(e)
+      throw e
     }
     return res
   }
@@ -45,7 +45,7 @@ export default class Client {
     try {
       res = await this.client.put(url, payload || {})
     } catch (e) {
-      throw new Error(e)
+      throw e
     }
     return res
   }
@@ -55,7 +55,7 @@ export default class Client {
     try {
       res = await this.client.delete(url, payload || {})
     } catch (e) {
-      throw new Error(e)
+      throw e
     }
     return res
   }
@@ -65,7 +65,7 @@ export default class Client {
     try {
       res = await this.client.patch(url, payload || {}, config)
     } catch (e) {
-      throw new Error(e)
+      throw e
     }
     return res
   }
