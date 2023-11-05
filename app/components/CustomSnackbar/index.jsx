@@ -2,7 +2,7 @@
 import React from 'react'
 import { Alert, Snackbar } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { hide } from '@/app/redux/reducers/snackbar'
+import { hide, show } from '@/app/redux/reducers/snackbar'
 import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 
 function CustomSnackbar() {
@@ -11,6 +11,7 @@ function CustomSnackbar() {
   const { open, severity, message, autoHideDuration } = snackbarManage
   const handleClose = () => {
     dispatch(hide())
+    // dispatch(show({message: 'Thanh cong', severity: 'success'}))
   }
   return (
     <Snackbar
