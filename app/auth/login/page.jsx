@@ -11,12 +11,14 @@ import { Box, Button, TextField } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import * as snackbar from '@/app/redux/reducers/snackbar'
 
 export default function Login() {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
   const { login, loginFailure } = useActions(userActions)
+  const { show } = useActions(snackbar)
   const router = useRouter()
   const { isLogin } = useShallowEqualSelector((state) => state.user)
   const isAdmin = readCookie(USER_ROLE) === 'Admin'
@@ -35,8 +37,16 @@ export default function Login() {
       try {
         const res = await auth.login({ userName, password })
         login(res.data)
-      } catch (error) {
-        loginFailure(error.message)
+        show({
+          message: 'Login successfully',
+          severity: snackbar.SNACKBAR_SEVERITY.SUCCESS,
+        })
+      } catch (err) {
+        loginFailure(err.response.data.errors[0])
+        show({
+          message: 'Invalid username or password',
+          severity: snackbar.SNACKBAR_SEVERITY.ERROR,
+        })
       }
     }
   }
