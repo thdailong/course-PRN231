@@ -1,3 +1,6 @@
+import useActions from '@/app/hooks/useActions'
+import * as snackbar from '@/app/redux/reducers/snackbar'
+import * as teacher from '@/app/rest_client/teacherClient'
 import {
   Button,
   Dialog,
@@ -9,9 +12,6 @@ import {
   Typography,
 } from '@mui/material'
 import React from 'react'
-import * as snackbar from '@/app/redux/reducers/snackbar'
-import * as teacher from '@/app/rest_client/teacherClient'
-import useActions from '@/app/hooks/useActions'
 
 const DialogForm = ({ text }) => {
   const [open, setOpen] = React.useState(false)
