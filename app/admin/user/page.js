@@ -1,12 +1,26 @@
 'use client'
 import TableComponent from '@/app/components/Table'
 import { ADMIN_ROUTES } from '@/app/constant/constant'
-import { getAllAccount } from '@/app/rest_client/adminClient'
-import { Typography } from '@mui/material'
+import { show } from '@/app/redux/reducers/snackbar'
+import { getAllAccount, updateBalanceUser } from '@/app/rest_client/adminClient'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+  Typography,
+} from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 const Page = () => {
   const [Users, setUsers] = useState([])
+  const [userId, setUserId] = useState(null)
+  const [money, setMoney] = useState(0)
+
+  const dispatch = useDispatch()
 
   const onGetUser = async () => {
     try {
@@ -15,6 +29,24 @@ const Page = () => {
       setUsers(res.data)
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const onUpdateBalance = async () => {
+    try {
+      if (!userId || !money) {
+        return
+      }
+      const res = await updateBalanceUser({
+        userId: userId,
+        balance: money,
+      })
+      setMoney(0)
+      dispatch(
+        show({ message: 'Update balance successfully', severity: 'success' })
+      )
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -27,30 +59,6 @@ const Page = () => {
       <Typography component={'h2'} variant="h4" mb={2}>
         User
       </Typography>
-      {/* description
-: 
-"Not set"
-dob
-: 
-"2023-11-03T16:07:58.6071004"
-email
-: 
-"admin@system"
-id
-: 
-"17bfcba3-90dd-4945-8511-3f6257a52ec0"
-imageUrl
-: 
-null
-name
-: 
-"Admin 01"
-type
-: 
-"Admin"
-userName
-: 
-"admin01" */}
       <TableComponent
         columns={[
           {
@@ -76,10 +84,36 @@ userName
             label: 'Username',
             render: ({ userName }) => <Typography>{userName}</Typography>,
           },
+          {
+            id: 'balance',
+            label: 'Action',
+            render: ({ id }) => (
+              <Button onClick={() => setUserId(id)}>Top up</Button>
+            ),
+          },
         ]}
         theme="light"
         rows={Users}
       />
+      <Dialog open={userId !== null} onClose={() => setUserId(null)}>
+        <DialogTitle>Top up user {userId}</DialogTitle>
+        <DialogContent>
+          <TextField
+            type="number"
+            value={money}
+            onChange={(e) => setMoney(e.target.value)}
+            sx={{
+              my: 2,
+            }}
+            fullWidth
+            label="Balance"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setUserId(null)}>Cancel</Button>
+          <Button onClick={onUpdateBalance}>Top up</Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }
