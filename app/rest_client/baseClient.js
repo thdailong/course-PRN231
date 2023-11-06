@@ -1,5 +1,6 @@
 import { ACCESS_TOKEN } from '@/app/constant/constant'
 import { readCookie } from '@/app/utils/cookies'
+import { objectToFormData } from '@/app/utils/user.util'
 import axios from 'axios'
 
 export default class Client {
@@ -64,6 +65,21 @@ export default class Client {
     let res = {}
     try {
       res = await this.client.patch(url, payload || {}, config)
+    } catch (e) {
+      throw e
+    }
+    return res
+  }
+
+  async postForm(url, payload) {
+    let res = {}
+    const formData = objectToFormData(payload)
+    try {
+      res = await this.client.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
     } catch (e) {
       throw e
     }

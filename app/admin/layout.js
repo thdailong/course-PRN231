@@ -33,21 +33,21 @@ const SideBarItems = [
     href: ADMIN_ROUTES.OVERVIEW,
     icon: SubjectIcon,
   },
-  {
-    name: 'Reports',
-    href: ADMIN_ROUTES.REPORT,
-    icon: ReportGmailerrorredIcon,
-  },
+  // {
+  //   name: 'Reports',
+  //   href: ADMIN_ROUTES.REPORT,
+  //   icon: ReportGmailerrorredIcon,
+  // },
   {
     name: 'Courses',
     href: ADMIN_ROUTES.COURSE,
     icon: SchoolIcon,
   },
-  {
-    name: 'Payments',
-    href: ADMIN_ROUTES.PAYMENT,
-    icon: AttachMoneyIcon,
-  },
+  // {
+  //   name: 'Payments',
+  //   href: ADMIN_ROUTES.PAYMENT,
+  //   icon: AttachMoneyIcon,
+  // },
   {
     name: 'Users',
     href: ADMIN_ROUTES.USER,
@@ -70,7 +70,7 @@ const SideBar = () => {
     if (!isLogin) {
       router.push('/auth/login')
     } else if (!isAdmin) {
-      router.push('/HomePage')
+      router.push('/')
     }
   })
 
