@@ -8,6 +8,16 @@ export const isPasswordValid = (password) => {
   return regex.test(password)
 }
 
+export function objectToFormData(obj) {
+  const formData = new FormData()
+
+  Object.entries(obj).forEach(([key, value]) => {
+    formData.append(key, value)
+  })
+
+  return formData
+}
+
 export function formatDatetime(isoDate) {
   const date = new Date(isoDate)
   const year = date.getFullYear()

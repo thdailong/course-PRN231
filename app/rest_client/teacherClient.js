@@ -69,5 +69,5 @@ export const createChapter = async (payload) => {
  }
  **/
 export const createDocument = async (payload) => {
-  return http.post('learn/documents/post', payload)
+  return http.postForm('learn/documents/post', payload)
 }

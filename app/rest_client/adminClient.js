@@ -3,7 +3,7 @@ import Client from './baseClient'
 const http = new Client()
 
 export const getAllCourses = async () => {
-  return http.get('api/courses')
+  return http.get('learn/courses/get')
 }
 
 /**
@@ -44,7 +44,7 @@ export const updateBalanceUser = async (payload) => {
  }
  */
 export const approveTeacher = async (userId, payload) => {
-  return http.put(`form/teacher-form/put?id=${userId}`, payload)
+  return http.put(`form/teacher-forms/put?id=${userId}`, payload)
 }
 
 /**
@@ -70,4 +70,8 @@ export const getAllTeacherRequestsForm = async () => {
  */
 export const approveCourseToBePublic = async (courseId, payload) => {
   return http.put(`form/publishes/put?id=${courseId}`, payload)
+}
+
+export const getAllPublishesForm = async () => {
+  return http.get('form/publishes/get')
 }

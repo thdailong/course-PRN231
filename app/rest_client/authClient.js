@@ -35,7 +35,7 @@ export const getListCategory = async () => {
  ]
  */
 export const getListCourse = async () => {
-  return http.get('learn/courses/get')
+  return http.get('learn/courses/all')
 }
 
 /**
