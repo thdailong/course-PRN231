@@ -1,21 +1,26 @@
 'use client'
 import UserInfoForm from '@/app/components/UserPage/UserInfoForm'
+import * as auth from '@/app/rest_client/authClient'
 import { Paper } from '@mui/material'
-
-const obj = {
-  id: 1,
-  username: 'kaiz0402',
-  name: 'Hung Phu',
-  email: 'phunlh2001@gmail.com',
-  address: 'Dong Thap',
-  dob: '2001-04-02',
-  desc: 'Hello buddies',
-}
+import { useEffect, useState } from 'react'
 
 const Page = () => {
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await auth.verifyUser()
+      console.log(res)
+      setData(res?.data)
+    }
+
+    fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Paper elevation={3} sx={{ width: '100%', p: 3 }}>
-      <UserInfoForm {...obj} />
+      <UserInfoForm {...data} />
     </Paper>
   )
 }

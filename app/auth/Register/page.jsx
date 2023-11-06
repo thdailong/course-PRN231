@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import * as snackbar from '@/app/redux/reducers/snackbar'
 
 const TextInput = ({ label, name, onChange, value }) => {
   return (
@@ -56,6 +57,7 @@ const PasswordInput = ({ label, name, onChange, value, type, onClick }) => {
 
 const RegisterForm = () => {
   const { isLogin } = useShallowEqualSelector((state) => state.user)
+  const { show } = useActions(snackbar)
   const router = useRouter()
 
   useComponentWillMount(() => {
@@ -91,9 +93,16 @@ const RegisterForm = () => {
     if (!isLogin) {
       try {
         await register(formData)
+        show({
+          message: 'Register successfully',
+          severity: snackbar.SNACKBAR_SEVERITY.SUCCESS,
+        })
         router.push('/auth/login')
       } catch (error) {
-        console.log(error.message)
+        show({
+          message: error.response.data.errors[0],
+          severity: snackbar.SNACKBAR_SEVERITY.ERROR,
+        })
       }
     }
   }
