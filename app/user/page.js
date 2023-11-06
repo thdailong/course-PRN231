@@ -3,6 +3,8 @@ import UserInfoForm from '@/app/components/UserPage/UserInfoForm'
 import * as auth from '@/app/rest_client/authClient'
 import { Paper } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { createCookie } from '../utils/cookies'
+import { USER_ROLE } from '../constant/constant'
 
 const Page = () => {
   const [data, setData] = useState()
@@ -12,6 +14,7 @@ const Page = () => {
       const res = await auth.verifyUser()
       console.log(res)
       setData(res?.data)
+      createCookie(USER_ROLE, res?.data.type)
     }
 
     fetchData()
