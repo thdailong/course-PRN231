@@ -12,12 +12,14 @@ import {
   IconButton,
   List,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import AddIcon from '@mui/icons-material/Add'
 import ListOfDocs from '@/app/teacher/ListOfDocs'
+import CheckIcon from '@mui/icons-material/Check'
 
 const CreateChapter = ({ course, setCourse }) => {
   const [chapters, setChapters] = useState([])
@@ -25,6 +27,7 @@ const CreateChapter = ({ course, setCourse }) => {
   const [doc, setDoc] = useState({
     Url: '',
     Name: '',
+    Description: '',
   })
   const [openDocDialog, setOpenDocDialog] = useState(false)
   const [chooseChapter, setChooseChapter] = useState(null)
@@ -76,7 +79,10 @@ const CreateChapter = ({ course, setCourse }) => {
     try {
       const res = await createDocument({
         Name: doc.Name,
-        Url: doc.Url,
+        Url: JSON.stringify({
+          url: doc.Url,
+          description: doc.Description,
+        }),
         chapterId: chooseChapter,
       })
       onGetChapters()
@@ -113,6 +119,38 @@ const CreateChapter = ({ course, setCourse }) => {
           Create Chapter for course{' '}
         </Typography>
         {course?.name}
+        {course?.status == 0 ? (
+          <Tooltip title="Course is not published yet! You can not add docs to chapter">
+            <Box
+              sx={{
+                backgroundColor: 'red',
+                borderRadius: '50%',
+                display: 'inline',
+                cursor: 'pointer',
+                p: 2,
+                py: 1,
+                color: '#FFF',
+              }}
+            >
+              !
+            </Box>
+          </Tooltip>
+        ) : (
+          <Tooltip title="Course is published!">
+            <Box
+              sx={{
+                backgroundColor: 'green',
+                borderRadius: '50%',
+                display: 'inline',
+                cursor: 'pointer',
+                color: '#FFF',
+                p: 1,
+              }}
+            >
+              <CheckIcon />
+            </Box>
+          </Tooltip>
+        )}
       </Typography>
 
       <Box display={'flex'} gap={2} mt={2} alignItems={'center'}>
@@ -164,17 +202,28 @@ const CreateChapter = ({ course, setCourse }) => {
                   color: '#FFF',
                 }}
                 onClick={() => onAddDoc(chapter.id)}
+                disabled={course?.status == 0}
               >
                 <AddIcon />
               </IconButton>
             </Box>
-            <ListOfDocs chapter={chapter} />
+            <ListOfDocs documents={chapter?.documents} />
           </Box>
         ))}
       </List>
       <Dialog open={openDocDialog} onClose={onCloseDocDialog}>
-        <DialogTitle>Add Document</DialogTitle>
+        <DialogTitle>
+          Add Document for{' '}
+          {chapters.find((item) => item.id == chooseChapter)?.name}
+        </DialogTitle>
         <DialogContent>
+          <TextField
+            value={doc.Name}
+            onChange={(e) => setDoc({ ...doc, Name: e.target.value })}
+            name="Name"
+            label="Name"
+            fullWidth
+          />
           <TextField
             value={doc.Url}
             onChange={(e) => setDoc({ ...doc, Url: e.target.value })}
@@ -183,15 +232,19 @@ const CreateChapter = ({ course, setCourse }) => {
             fullWidth
             sx={{
               mt: 1,
-              mb: 2,
+              mb: 1,
             }}
           />
           <TextField
-            value={doc.Name}
-            onChange={(e) => setDoc({ ...doc, Name: e.target.value })}
-            name="Name"
-            label="Name"
+            value={doc.Description}
+            onChange={(e) => setDoc({ ...doc, Description: e.target.value })}
+            name="Description"
+            label="Description"
             fullWidth
+            multiline
+            sx={{
+              mb: 1,
+            }}
           />
         </DialogContent>
         <DialogActions>

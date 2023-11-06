@@ -1,23 +1,28 @@
 import { getAllDocsByChapterID } from '@/app/rest_client/authClient'
+import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 
-const ListOfDocs = ({ chapter }) => {
+const ListOfDocs = ({ documents }) => {
   const [docs, setDocs] = useState([])
-  const onGetDocs = async () => {
-    try {
-      const res = await getAllDocsByChapterID(chapter.id)
-      setDocs(res.data)
-      console.log(res.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
-  useEffect(() => {
-    onGetDocs()
-  }, [])
-
-  return <>ListOfDocs</>
+  return (
+    <>
+      <List>
+        {documents.map((item) => (
+          <ListItem
+            key={item.id}
+            sx={{ gap: '2px', justifyContent: 'flex-start', height: '60px' }}
+          >
+            <ListItemText
+              sx={{ textAlign: 'start' }}
+              primary={item?.name}
+              secondary={item?.resource}
+            />
+          </ListItem>
+        ))}
+      </List>
+    </>
+  )
 }
 
 export default ListOfDocs
