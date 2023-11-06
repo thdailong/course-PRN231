@@ -29,7 +29,7 @@ export default function AllProductCard({ item }) {
             className={styles['box-contain']}
               onClick={e => handleGetByID(e)}
         >
-            <Box component='span' className={styles.span}>120.000 đ</Box>
+            <Box component='span' className={styles.span}>{item.price}đ</Box>
             <Card
                 sx={
                     {
@@ -58,16 +58,16 @@ export default function AllProductCard({ item }) {
                         sx={{
                             height: "100%", width: "100%", borderRadius: "5px", transition: "all 0.2s"
                         }}
-                        image={item.avatar}
+                        image='https://files.fullstack.edu.vn/f8-prod/courses/15/62f13d2424a47.png'
                         title="green iguana"
                     />
                 </Box>
                 <CardContent sx={{ p: 0, margin: "10px 0 0 0" }}>
                     <Typography variant="h5" component="div" sx={{ color: "#6941c6" }} >
-                        Lizard
+                        {item.name.length > 20?item.name.slice(0, 20) + '...':item.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: "10px" }}>
-                        {item.des.slice(0, 200)}
+                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: "10px", height:"43px" }}>
+                        {item.description.slice(0, 200)}
                     </Typography>
                 </CardContent>
                 <Box sx={{ display: "flex", alignItems: "center", gap: "5px", marginTop: "10px" }}>
@@ -90,7 +90,7 @@ export default function AllProductCard({ item }) {
                                 Author
                             </Typography>
                             <Typography variant='caption'>
-                                {item.last_name.slice(0, 20)}
+                                {item.categoryId.slice(0, 20)}
                             </Typography>
                         </Box>
                     </Box>

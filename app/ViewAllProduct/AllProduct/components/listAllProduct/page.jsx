@@ -22,7 +22,7 @@ export default function ListAllProduct({ displayedData }) {
         }>
             {
                 displayedData.length && displayedData.map((item, index) => (
-                    <AllProductCard key={index} item={item} />
+                    <AllProductCard key={item.id} item={item} />
                 ))
             }
 

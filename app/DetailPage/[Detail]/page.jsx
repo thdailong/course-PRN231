@@ -1,16 +1,25 @@
 "use client"
+import { courseById } from '@/app/rest_client/courseClient';
 import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
 import CardPrice from '../CardPrice/Page';
 import CourseSubject from '../CourseSubject/Page';
 import Describe from '../Describe/page';
 import DetailBody from '../DetailBody/page';
 import DetailHero from '../DetailHero/page';
-import { GetDataById } from './util';
 
 export default function page({ params }) {
 
+  const [IdCourseData, setDataIdCourse] = useState()
+  useEffect(() => {
+    async function fetchMyAPI() {
+      const response = await courseById(params.Detail)
+      setDataIdCourse(response)
+    }
 
-  let data = GetDataById(params.Detail)
+    fetchMyAPI()
+  }, [])
+
 
   return (
     <Box
@@ -20,11 +29,11 @@ export default function page({ params }) {
         }
       }
     >
-      <DetailHero />
+      <DetailHero IdCourseData={IdCourseData}/>
       <DetailBody />
       <Describe />
       <CourseSubject />
-      <CardPrice data={data}/>
+      <CardPrice IdCourseData={IdCourseData} />
     </Box>
   )
 }

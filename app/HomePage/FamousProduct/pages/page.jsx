@@ -1,9 +1,10 @@
 "use client"
+import { courseNotLearn } from '@/app/rest_client/courseClient';
 import { Box, Button, Pagination, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ListFamous from '../components/ListFamousProduct/page';
-import { getAllCard, getAllProduct } from './apiCalling';
+import { getAllCard } from './apiCalling';
 import styles from './page.module.css';
 // rfec
 
@@ -11,50 +12,44 @@ function ProductNav() {
 
     const router = useRouter()
 
-    const[currentPage, setCurrentPage] = useState(1)
-    const [dataProduct, setDataProduct] = useState([])
-    const [totalProduct, setTotalProduct] = useState()
-    const [totalPage, setTotalPage] = useState()
-    
-    // lay data tu calldata
-    const data = getAllCard().data
+    const [currentPage, setCurrentPage] = useState(1)
+    const [courseFm, setCourseFM] = useState([])
 
     // xac dinh so phan tu trong trang
     const itemPerPage = 4
 
     // xac dinh so trang
-    const pageCount = Math.ceil(data.length / itemPerPage);
+    const pageCount = Math.ceil(courseFm.length / itemPerPage);
 
     // phan tu nao se display trong trang 
-    const displayedData = data.slice(
+    const displayedData = courseFm.slice(
         (currentPage - 1) * itemPerPage,
         ((currentPage - 1) + 1) * itemPerPage
     );
 
-    const handlePagnating = (e, vl) =>{
+    const handlePagnating = (e, vl) => {
         setCurrentPage(vl)
     }
 
     useEffect(() => {
-        getProduct(1)
+        const getAllProduct = async () => {
+            const response = await courseNotLearn()
+            setCourseFM(response.data)
+        }
+
+        getAllProduct()
     }, [])
 
-    const getProduct = async (curentPage) => {
-        let res = await getAllProduct(curentPage)
-        if (res && res.data) {
-            setDataProduct(res.data.data)
-            setTotalProduct(+res.data.total)
-            setTotalPage(+res.data.total_pages)
-        }
-    }
+console.log(courseFm);
 
     const handlePageClick = (event) => {
-        getProduct(+event.selected + 1)
+        console.log('click hompage');
     }
 
-    const navViewmore = () =>{
+    const navViewmore = () => {
         router.push('/ViewAllProduct')
-      }
+    }
+
     return (
         <Box sx={
             {
@@ -94,7 +89,7 @@ function ProductNav() {
             }>
                 <ListFamous dataProduct={displayedData} />
                 <Pagination count={pageCount} color="secondary" onChange={handlePagnating} sx={{ marginTop: "30px", width: "100%", display: "flex", justifyContent: "center" }} />
-                <Button variant="outlined" className={styles['btn-famous']}  onClick={navViewmore}>View more</Button>
+                <Button variant="outlined" className={styles['btn-famous']} onClick={navViewmore}>View more</Button>
             </Box>
         </Box>
     )

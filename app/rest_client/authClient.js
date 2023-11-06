@@ -151,5 +151,5 @@ export const getAllDocsByChapterID = async (chapterId) => {
  * @return {Promise} A promise that resolves with the response from the server.
  */
 export const buyCourse = async (courseId) => {
-  return http.post('learn/courses/buy?id=' + courseId)
+  return http.post(`learn/courses/buy?id=${courseId}`)
 }

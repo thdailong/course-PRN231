@@ -1,19 +1,31 @@
 "use client"
+import { buyCourse } from '@/app/rest_client/authClient'
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-export default function CardPrice({ data }) {
+export default function CardPrice(props) {
 
+    const { IdCourseData } = props
     const router = useRouter()
+    let dataCourse = IdCourseData?.data
     // usestate place
     const [hoverImg, setHoverImg] = useState(false)
 
     const handleGetByID = (e) => {
-        const IdProduct = data.id
-        router.push(`/PaymentPage/${IdProduct}`)
+        const IdProduct = dataCourse.id
+        postBuyCourse(IdProduct)
     }
 
+    const postBuyCourse = async (val) => {
+        const response = await buyCourse(val)
+        if (response.status ===  200 || response.status ===  204) {
+            router.push('/ViewAllProduct?pay=true')
+        }
+        if (response.status === 404) {
+            return 'fail'
+        }
+    }
 
     return (
         <Card
@@ -22,10 +34,10 @@ export default function CardPrice({ data }) {
                     position: "fixed",
                     top: "170px",
                     right: "65px",
-                    maxWidth: "350px",
+                    maxWidth: "380px",
                     boxShadow: "10",
                     userSelect: "none",
-                    paddingBottom: "34px",
+                    paddingBottom: "10px",
                     borderRadius: "10px",
                 }
             }
@@ -35,7 +47,7 @@ export default function CardPrice({ data }) {
                     {
                         overflow: "hidden",
                         width: "100%",
-                        height: "200px",
+                        height: "180px",
                     }
                 }
                 onMouseEnter={() => setHoverImg(true)}
@@ -44,8 +56,8 @@ export default function CardPrice({ data }) {
                 <CardMedia
                     component="img"
                     alt="green iguana"
-                    height="200"
-                    image="https://images.unsplash.com/photo-1696958363946-b58f40cda426"
+                    height="180"
+                    image="https://files.fullstack.edu.vn/f8-prod/courses/15/62f13d2424a47.png"
                     sx={
                         {
                             transition: "all 0.2s",
@@ -56,11 +68,14 @@ export default function CardPrice({ data }) {
             </Box>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: "700", color: "#7F56D9" }}>
-                    500.000đ
+                    {dataCourse?.price + ' VND'}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                <Typography variant="body2" color="text.secondary" sx={{ textAlign: "justify" }}>
+                    {
+                        dataCourse?.description.length > 200 ?
+                            dataCourse?.description.slice(0, 160) + "..." :
+                            dataCourse?.description
+                    }
                 </Typography>
             </CardContent>
             <CardActions sx={{ display: "flex", justifyContent: "center" }}>
