@@ -18,6 +18,8 @@ const Page = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  console.log(data)
+
   return (
     <Paper elevation={3} sx={{ width: '100%', p: 3 }}>
       <UserInfoForm {...data} />

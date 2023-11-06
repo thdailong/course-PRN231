@@ -1,9 +1,8 @@
 'use client'
-import { formatDatetime } from '@/app/utils/user.util'
 import { Button, Container, Grid, TextField, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 
-const UserInfoForm = ({ name, userName, email, dob, description }) => {
+const UserInfoForm = ({ name, userName, email, description, type }) => {
   const router = useRouter()
 
   const handleBack = () => {
@@ -17,11 +16,21 @@ const UserInfoForm = ({ name, userName, email, dob, description }) => {
       </Typography>
       <form>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
               label="Full Name"
               fullWidth
-              value={name}
+              defaultValue={name}
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              label="Role"
+              fullWidth
+              defaultValue={type}
               InputProps={{
                 readOnly: true,
               }}
@@ -31,17 +40,7 @@ const UserInfoForm = ({ name, userName, email, dob, description }) => {
             <TextField
               label="Username"
               fullWidth
-              value={userName}
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="DOB"
-              fullWidth
-              value={formatDatetime(dob)}
+              defaultValue={userName}
               InputProps={{
                 readOnly: true,
               }}
@@ -51,7 +50,7 @@ const UserInfoForm = ({ name, userName, email, dob, description }) => {
             <TextField
               label="Email"
               fullWidth
-              value={email}
+              defaultValue={email}
               InputProps={{
                 readOnly: true,
               }}
@@ -63,7 +62,7 @@ const UserInfoForm = ({ name, userName, email, dob, description }) => {
               fullWidth
               multiline
               rows={4}
-              value={description}
+              defaultValue={description}
               InputProps={{
                 readOnly: true,
               }}
