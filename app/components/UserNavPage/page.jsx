@@ -21,6 +21,8 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import logo from './images/c.png'
 import DialogForm from './Dialog/DialogForm'
+import { readCookie } from '@/app/utils/cookies'
+import { USER_ROLE } from '@/app/constant/constant'
 
 const pages = [
   { text: 'Home', link: '/' },
@@ -30,6 +32,7 @@ const settings = ['Profile', 'Upgrade account']
 
 export default function UserNavPage() {
   const router = useRouter()
+  const isTeacher = readCookie(USER_ROLE) === 'Teacher'
 
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
@@ -147,9 +150,20 @@ export default function UserNavPage() {
                 Profile
               </Typography>
             </MenuItem>
-            <MenuItem onClick={handleCloseUserMenu}>
-              <DialogForm text="Upgrade Account" />
-            </MenuItem>
+            {isTeacher ? (
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography
+                  textAlign="center"
+                  onClick={() => router.push('/teacher')}
+                >
+                  Create Course
+                </Typography>
+              </MenuItem>
+            ) : (
+              <MenuItem onClick={handleCloseUserMenu}>
+                <DialogForm text="Upgrade Account" />
+              </MenuItem>
+            )}
           </Menu>
         </Box>
       </Toolbar>
