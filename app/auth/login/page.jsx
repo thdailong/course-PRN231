@@ -27,7 +27,7 @@ export default function Login() {
     if (isLogin && isAdmin) {
       router.push('/admin')
     } else if (isLogin) {
-      router.push('/HomePage')
+      router.push('/')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin])
