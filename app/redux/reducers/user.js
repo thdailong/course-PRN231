@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN, USER_ID, USER_ROLE } from '@/app/constant/constant'
+import { ACCESS_TOKEN, USER_ID } from '@/app/constant/constant'
 import { createCookie, eraseCookie, readCookie } from '@/app/utils/cookies'
 import { createSlice } from '@reduxjs/toolkit'
 
@@ -17,7 +17,6 @@ const userSlice = createSlice({
     login: (state, action) => {
       const days = new Date(action.payload.expiredIn).getDay()
       createCookie(ACCESS_TOKEN, action.payload.accessToken, days)
-      createCookie(USER_ROLE, action.payload.role, days)
       createCookie(USER_ID, action.payload.id, days)
       state.isLogin = true
       state.error = null
@@ -28,7 +27,6 @@ const userSlice = createSlice({
     },
     logout: (state) => {
       eraseCookie(ACCESS_TOKEN)
-      eraseCookie(USER_ROLE)
       eraseCookie(USER_ID)
       state.isLogin = false
       state.error = null
