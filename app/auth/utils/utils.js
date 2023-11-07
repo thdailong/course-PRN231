@@ -7,7 +7,7 @@ export const validateEmail = (email) => {
 }
 
 export const isUppercase = (str) => {
-  return /[A-Z]/.test(str);
+  return /[A-Z]/.test(str)
 }
 
 export const checkSpecialSymbol = (str) => {
@@ -15,15 +15,22 @@ export const checkSpecialSymbol = (str) => {
 }
 
 export const checkSpace = (str) => {
-  return /[ \s*]/.test(str);
+  return /[ \s*]/.test(str)
 }
 
 export const isUserValid = (userName) => {
-  if (isUppercase(userName) || checkSpecialSymbol(userName) || userName.length === 0) {
+  if (
+    isUppercase(userName) ||
+    checkSpecialSymbol(userName) ||
+    userName.length === 0
+  ) {
     return true
   }
-  
-  if (!isUppercase(userName) && !checkSpecialSymbol(userName) || !userName.length === 0) {
+
+  if (
+    (!isUppercase(userName) && !checkSpecialSymbol(userName)) ||
+    !userName.length === 0
+  ) {
     return false
   }
 }

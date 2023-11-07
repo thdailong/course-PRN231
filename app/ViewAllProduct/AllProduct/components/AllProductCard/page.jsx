@@ -90,7 +90,7 @@ export default function AllProductCard({ item }) {
                                 Author
                             </Typography>
                             <Typography variant='caption'>
-                                {item.categoryId.slice(0, 20)}
+                                {item.creatorId.slice(0, 20)}
                             </Typography>
                         </Box>
                     </Box>

@@ -1,12 +1,11 @@
 "use client";
-import UserNavBar from "@/app/components/UserPage/NavBar";
 import { Box } from "@mui/material";
-import React from "react";
+import UserNavPage from '../components/UserNavPage/page';
 
 const Layout = ({ children }) => {
 	return (
 		<Box>
-			<UserNavBar />
+			<UserNavPage />
 			{children}
 		</Box>
 	);

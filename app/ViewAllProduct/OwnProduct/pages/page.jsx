@@ -5,21 +5,39 @@ import { useEffect } from 'react'
 import { Box, Pagination, Typography } from '@mui/material'
 import { OwnProductList, handlePageOnw } from './callAPI'
 import OwProductList from '../components/OwProductList/page'
+import { courseNotLearn } from '@/app/rest_client/courseClient'
 
-export default function OwnProduct() {
+export default function OwnProduct({ searchText }) {
   // usestate space
   const [currentPage, setCurrentPage] = useState(1)
+  const [course, setCourse] = useState()
 
-  const data = handlePageOnw().data
+  useEffect(() => {
+    async function fetchMyAPI() {
+      const response = await courseNotLearn()
+      const data = response.data
+      const dataBuying = data.filter((value) => {
+        if (searchText.length > 0) {
+          return value.name.toLowerCase().includes(searchText.toLowerCase()) && value.isStudying === true
+        }
+        else {
+          return value.isStudying === true
+        }
+      })
+      setCourse(dataBuying)
+    }
+    fetchMyAPI()
+
+  }, [searchText])
 
   // xac dinh moi page hien thi bn card
   const itemsPerPage = 4
 
   // so dot can hien thi
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+  const pageCount = Math.ceil(course?.length / itemsPerPage);
 
   // phan tu can duoc render trong trang day
-  const displayedData = data.slice(
+  const displayedData = course?.slice(
     (currentPage - 1) * itemsPerPage,
     ((currentPage - 1) + 1) * itemsPerPage
   );
@@ -28,6 +46,7 @@ export default function OwnProduct() {
   const handleCrPage = (e, vl) => {
     setCurrentPage(vl)
   }
+
 
   return (
     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: "30px" }}>

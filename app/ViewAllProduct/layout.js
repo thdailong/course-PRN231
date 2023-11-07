@@ -5,7 +5,6 @@ import UserNavPage from "../components/UserNavPage/page";
 export default function Layout({ children }) {
   return (
       <Box>
-       <UserNavPage />
         {children}
       </Box>
   )

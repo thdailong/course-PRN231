@@ -11,6 +11,9 @@ import DetailHero from '../DetailHero/page';
 export default function page({ params }) {
 
   const [IdCourseData, setDataIdCourse] = useState()
+
+  const idParams = params.Detail
+
   useEffect(() => {
     async function fetchMyAPI() {
       const response = await courseById(params.Detail)
@@ -33,7 +36,7 @@ export default function page({ params }) {
       <DetailBody />
       <Describe />
       <CourseSubject />
-      <CardPrice IdCourseData={IdCourseData} />
+      <CardPrice IdCourseData={IdCourseData} idParams={idParams} />
     </Box>
   )
 }

@@ -16,7 +16,8 @@ import * as snackbar from '@/app/redux/reducers/snackbar'
 export default function Login() {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
-
+  const [vldUser, setVldUser] = useState(false)
+  const [vldPass, setVldPass] = useState(false)
   const { login, loginFailure } = useActions(userActions)
   const { show } = useActions(snackbar)
   const router = useRouter()
@@ -51,6 +52,24 @@ export default function Login() {
     }
   }
 
+  const onUsername = (value) => {
+    if (isUserValid(value)) {
+      setVldUser(true)
+    }
+    if (!isUserValid(value) || value === '') {
+      setVldUser(false)
+    }
+  }
+
+  const onPass = (value) => {
+    if (isPasswordValid(value)) {
+      setVldPass(true)
+    }
+    if (!isPasswordValid(value) || value === '') {
+      setVldPass(false)
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -58,7 +77,7 @@ export default function Login() {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        marginTop: '30px',
+        backgroundColor:"#24024F"
       }}
     >
       <Box
@@ -72,6 +91,7 @@ export default function Login() {
           gap: '10px',
           padding: '18px 18px',
           backgroundColor: 'white',
+          mt:"150px"
         }}
       >
         <TextField
@@ -79,16 +99,16 @@ export default function Login() {
             width: '100%',
             userSelect: 'none',
           }}
-          error={isUserValid(userName) == true}
+          error={vldUser == true}
           id="filled-username"
           label="UserName"
           type="search"
           variant="filled"
-          onChange={(e) => setUserName(e.target.value)}
-          helperText={isUserValid(userName) ? 'only contain normal text' : ''}
+          onChange={(e) => { setUserName(e.target.value); onUsername(e.target.value) }}
+          helperText={vldUser ? 'only contain normal text' : ''}
         />
         <TextField
-          error={isPasswordValid(password) == true}
+          error={vldPass == true}
           sx={{
             width: '100%',
             userSelect: 'none',
@@ -98,9 +118,9 @@ export default function Login() {
           type="password"
           autoComplete="current-password"
           variant="filled"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => { setPassword(e.target.value); onPass(e.target.value) }}
           helperText={
-            isPasswordValid(password)
+            vldPass
               ? 'passsword cant be empty or have space'
               : ''
           }
@@ -116,7 +136,7 @@ export default function Login() {
             Forgot password
           </Button>
         </Box>
-        <Link href="/auth/register">Register</Link>
+        <Link href="/auth/Register">Register</Link>
       </Box>
     </Box>
   )

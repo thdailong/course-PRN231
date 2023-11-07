@@ -2,13 +2,14 @@
 import { Box } from '@mui/material';
 import ChapterFeature from '../ChapterFeature/page';
 
-export default function ChapterList({ chapterData }) {
+export default function ChapterList({ chapterData, dataChapter }) {
+
     return (
         <Box sx={{ display: "flex", flexDirection: "column" }}>
             {
-                chapterData?.Chapters.length  ? chapterData.Chapters.map((item, idx) => (
-                    <ChapterFeature key={idx} item={item} />
-                )):"The course does not exist yet"
+                dataChapter.length ? dataChapter.map((item, idx) => (
+                    <ChapterFeature key={item.id} item={item} no={idx} chapterid={item.id}/>
+                )) : "The course does not exist yet"
             }
         </Box>
 

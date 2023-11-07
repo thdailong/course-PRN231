@@ -13,7 +13,7 @@ export default function FootView() {
                     height: "421px",
                     backgroundColor: "#7F56D9",
                     position: "absolute",
-                    bottom: "0",
+                    bottom: "-10px",
                     left: "0",
                 }}
                 zIndex={-1}
@@ -26,6 +26,7 @@ export default function FootView() {
                 justifyContent="center"
                 sx={{
                     flex: "1",
+                    pt:"100px"
                 }}
                 spacing={2}
             >
@@ -42,7 +43,7 @@ export default function FootView() {
                     src={computer}
                     alt="Picture of the author"
                     height={600}
-                    width={700}
+                    width={790}
                     objectFit='contain'
                 />
             </Box>

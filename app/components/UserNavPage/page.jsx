@@ -17,7 +17,7 @@ import {
 import Image from 'next/image'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import logo from './images/c.png'
 
@@ -27,12 +27,12 @@ const pages = [
 ]
 const settings = ['Profile', 'Upgrade account']
 
-export default function UserNavPage() {
+export default function UserNavPage({holdSearch}) {
   const router = useRouter()
+  const patchName = usePathname()
 
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
-  const [search, setSearch] = useState('')
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget)
@@ -56,6 +56,7 @@ export default function UserNavPage() {
   const navToHome = () => {
     router.push('/')
   }
+
 
   return (
     <AppBar
@@ -94,7 +95,7 @@ export default function UserNavPage() {
         <Box
           component="form"
           sx={{
-            ml: '100px',
+            ml: '0px',
             p: '2px 4px',
             display: 'flex',
             alignItems: 'center',
@@ -109,7 +110,7 @@ export default function UserNavPage() {
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="Find course"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {holdSearch(e.target.value)}}
           />
           <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
             <SearchIcon />

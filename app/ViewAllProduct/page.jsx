@@ -1,19 +1,27 @@
+'use client'
 import { Box } from '@mui/material'
-import React from 'react'
+import AboutUs from '../HomePage/AboutUs/page'
+import AllCourseUser from './AllProduct/pages/page'
 import OwnProduct from './OwnProduct/pages/page'
 import SliderHero from './SliderHero/page'
-import AllCourseUser from './AllProduct/pages/page'
-import OurMember from './OurMember/page'
 import FootView from './footViewAll/page'
-import AboutUs from '../HomePage/AboutUs/page'
+import UserNavPage from '../components/UserNavPage/page'
+import { useState } from 'react'
 
 export default function page() {
+
+const [searchText, setSearchText] = useState('')
+
+const holdSearch = (vl) =>{
+  setSearchText(vl)
+}
   return (
-    <Box sx={{ height: 'auto', width: '100%', padding: "100px 20px 0 20px" }}>
+    <Box sx={{ height: 'auto', width: '100%',position:"relative" }}>
+       <UserNavPage holdSearch={holdSearch}/>
       <SliderHero />
-      <OwnProduct />
+      <OwnProduct searchText={searchText}/>
       <AboutUs />
-      <AllCourseUser />
+      <AllCourseUser searchText={searchText}/>
       <FootView />
     </Box>
   )

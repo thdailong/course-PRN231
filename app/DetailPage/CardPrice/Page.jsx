@@ -1,4 +1,6 @@
 "use client"
+import useActions from '@/app/hooks/useActions'
+import * as snackbar from '@/app/redux/reducers/snackbar'
 import { buyCourse } from '@/app/rest_client/authClient'
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
@@ -6,7 +8,8 @@ import { useState } from 'react'
 
 export default function CardPrice(props) {
 
-    const { IdCourseData } = props
+    const { IdCourseData, idParams } = props
+    const { show } = useActions(snackbar)
     const router = useRouter()
     let dataCourse = IdCourseData?.data
     // usestate place
@@ -19,11 +22,12 @@ export default function CardPrice(props) {
 
     const postBuyCourse = async (val) => {
         const response = await buyCourse(val)
-        if (response.status ===  200 || response.status ===  204) {
-            router.push('/ViewAllProduct?pay=true')
-        }
-        if (response.status === 404) {
-            return 'fail'
+        if (response.status === 200 || response.status === 204) {
+            router.push(`/ViewAllProduct`)
+            show({
+                message: 'Buy loading',
+                severity: snackbar.SNACKBAR_SEVERITY.INFO,
+              })
         }
     }
 

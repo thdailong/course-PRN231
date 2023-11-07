@@ -3,32 +3,35 @@ import { courseNotLearn, getCategory } from '@/app/rest_client/courseClient'
 import { Box, Pagination, Stack, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import ListAllProduct from '../components/listAllProduct/page'
+import { useSearchParams } from 'next/navigation'
 
-export default function AllCourseUser() {
+export default function AllCourseUser({searchText}) {
     const [currentPage, setCurrentPage] = useState(1);
     const [category, setCategory] = useState(1)
     const [course, setCourse] = useState([])
     const [categoryByCoure, setCategoryByCourse] = useState([])
+    const searchParams = useSearchParams()
     const itemsPerPage = 8
+
+    const searching = searchParams.get('seach')
 
     useEffect(() => {
         async function fetchMyAPI() {
             const response = await courseNotLearn()
             const data = response.data
-           const dataNonBuy = data.filter((value) =>{
-                return value.isStudying === false;
+            const dataNonBuy = data.filter((value) => {
+                if (searchText.length > 0) {
+                    return value.name.toLowerCase().includes(searchText.toLowerCase()) && value.isStudying === false
+                }
+                else {
+                    return value.isStudying === false;
+                }
             })
             setCourse(dataNonBuy)
         }
+
         fetchMyAPI()
-
-        const categoryApi = async () => {
-            const resp = await getCategory()
-            setCategoryByCourse(resp?.data)
-        }
-
-        categoryApi()
-    }, [])
+    }, [searchText])
 
     // xac dinh so trang
     const pageCount = Math.ceil(course.length / itemsPerPage);
@@ -48,8 +51,6 @@ export default function AllCourseUser() {
     const handleCategory = (e) => {
         setCategory(e.target.value)
     }
-
-    console.log(course);
 
     return (
         <Box sx={{ height: 'auto', width: "100%", marginTop: "30px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
