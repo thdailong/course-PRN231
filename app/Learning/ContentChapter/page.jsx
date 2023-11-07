@@ -2,22 +2,31 @@
 import { Box, Typography } from '@mui/material';
 import { useSearchParams } from 'next/navigation';
 import { getDocumentByCourse } from '../[LearningID]/callingChapterAPI';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { getCourseById, getDocumentById } from '@/app/rest_client/courseClient';
 
 export default function ContentChapter({ paramsPage }) {
 
 
   const searchParams = useSearchParams()
+  const [contentDT, setContentDT] = useState()
 
   const documentID = searchParams.get('documentID')
-  const chapterID = searchParams.get('ChapterId')
+  const chapterID = searchParams.get('chapterid')
 
-  //Checks the existence of the query string
-  const documentData = () => {
-    if (documentID && chapterID) {
-      return getDocumentByCourse(paramsPage, chapterID, documentID)
+
+  useEffect(() => {
+    const getDataByDocument = async () => {
+      if (documentID) {
+        const rsp = await getDocumentById(documentID, chapterID)
+        setContentDT(rsp.data)
+      }
     }
-    else return
-  }
+
+    getDataByDocument()
+  }, [documentID])
+
 
   return (
     <Box
@@ -36,7 +45,7 @@ export default function ContentChapter({ paramsPage }) {
             borderRadius: "4px",
           },
           display: "flex",
-          flexDirection:"column"
+          flexDirection: "column"
         }
       }
     >
@@ -48,9 +57,9 @@ export default function ContentChapter({ paramsPage }) {
           }
         }
       >
-        <iframe style={{ height: "100%", width: "100%" }} src={documentData().VideoURL}></iframe>
+        <iframe style={{ height: "100%", width: "100%" }} src={contentDT?.resourceUri}></iframe>
       </Box>
-      <Typography sx={{fontSize:"30px", fontWeight:"700", color:"#7f56d9", m:"20px 0 0 20px"}}>{documentData().Name}</Typography>
+      <Typography sx={{ fontSize: "30px", fontWeight: "700", color: "#7f56d9", m: "20px 0 0 20px" }}>{contentDT?.name}</Typography>
     </Box>
   )
 }

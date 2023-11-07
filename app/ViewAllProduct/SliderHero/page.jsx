@@ -53,7 +53,7 @@ export default function SliderHero() {
         ]
     )
     return (
-        <Box ref={sliderRef} className='keen-slider' sx={{ height: '400px', marginTop: "30px" }}>
+        <Box ref={sliderRef} pt="100px" className='keen-slider' sx={{ height: '400px' }}>
             <Box className='keen-slider__slide number-slide1' sx={{ borderRadius: "20px" }}>
                 <Image
                     alt='picture'

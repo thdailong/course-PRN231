@@ -24,19 +24,19 @@ export default function OwProductCard(props) {
     setCatchHover(false)
   }
 
-  const handleNavigate = () =>{
+  const handleNavigate = () => {
     // router.push(`/Learning/${item.id}`)
-    router.push(`/Learning/${item.id}?documentID=1&ChapterId=1`)
-   
+    router.push(`/Learning/${item.id}`)
+
   }
 
   return (
-    <Box onClick={handleNavigate} sx={{width: "calc(25% - 5px)", minWidth: 'calc(25% - 5px)', height: '100%', borderRadius: "20px", boxShadow: "10", padding: "10px 10px 5px 10px", display: 'flex', flexDirection: "column", alignItems: "flex-start" }}>
+    <Box onClick={handleNavigate} sx={{ width: "calc(25% - 5px)", minWidth: 'calc(25% - 5px)', height: '100%', borderRadius: "20px", boxShadow: "10", padding: "10px 10px 5px 10px", display: 'flex', flexDirection: "column", alignItems: "flex-start" }}>
       <Card sx={{ minWidth: '100%', minHeight: '150px', borderRadius: "10px", cursor: 'pointer', overflow: "hidden", position: 'relative' }}>
         <CardActionArea >
           <CardMedia
             sx={{ height: 150, objectFit: 'cover' }}
-            image={item.avatar}
+            image='https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj'
             title="green iguana"
             className={`${styles['card-img']} ${catchHover && styles.active}`}
             onMouseEnter={handleHover}
@@ -60,8 +60,8 @@ export default function OwProductCard(props) {
           onMouseEnter={handleHover}
         >Learning</Button>
       </Card>
-      <Typography variant='body1' sx={{ marginTop: '10px', fontSize: '18px', fontWeight: '600', color: "#6941C6" }}>{item.email}</Typography>
-      <Typography variant='body1' sx={{ marginTop: "10px", color: "#667085", fontSize: "10px" }}>{item.des.slice(0, 200)} ...</Typography>
+      <Typography variant='body1' sx={{ marginTop: '10px', fontSize: '18px', fontWeight: '600', color: "#6941C6" }}>{item?.name.length > 20 ? item?.name.slice(0,20)+'...' : item?.name}</Typography>
+      <Typography variant='body1' sx={{ marginTop: "10px", color: "#667085", fontSize: "10px" }}>{item?.description.length > 200 ? item?.description.slice(0, 200) + ' ...' : item?.description}</Typography>
       <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%", marginTop: "10px" }}>
         <IconButton color="secondary" aria-label="add an alarm">
           <ShareIcon />

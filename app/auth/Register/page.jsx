@@ -1,5 +1,5 @@
 'use client'
-import * as Style from '@/app/auth/register/Register.styled'
+import * as Style from './Register.styled'
 import useComponentWillMount from '@/app/hooks/useComponentWillMount'
 import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 import { register } from '@/app/rest_client/authClient'
@@ -17,6 +17,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import * as snackbar from '@/app/redux/reducers/snackbar'
+import useActions from '@/app/hooks/useActions'
 
 const TextInput = ({ label, name, onChange, value }) => {
   return (

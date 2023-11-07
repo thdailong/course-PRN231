@@ -21,9 +21,9 @@ export default function ListAllProduct({ displayedData }) {
             }
         }>
             {
-                displayedData.length && displayedData.map((item, index) => (
-                    <AllProductCard key={index} item={item} />
-                ))
+                displayedData.length ? displayedData.map((item, index) => (
+                    <AllProductCard key={item.id} item={item} />
+                )):'No result'
             }
 
         </Box>

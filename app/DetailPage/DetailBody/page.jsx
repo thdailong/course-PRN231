@@ -8,11 +8,12 @@ export default function DetailBody() {
             direction='column'
             spacing={0}
             mt="30px"
-            ml="75px"
+            ml="50px"
             sx={
                 {
                     maxWidth: "1200px",
                     width: "1020px",
+                    height:"260px",
                     border: "1px solid #24024F",
                     borderRadius:"10px"
                 }
@@ -38,8 +39,8 @@ export default function DetailBody() {
                     }
                 }
             >
-                <Grid item xs={12} md={6} sx={{flex:1, pl:"51px"}}>
-                    <List sx={{color:"#24024F"}}>
+                <Grid item xs={12} md={6} sx={{flex:1}}>
+                    <List sx={{color:"#24024F",pl:"30px"}}>
                         <ListItem>
                             <ListItemText
                                 primary="You will learn how to build ur web with this course"
@@ -52,13 +53,13 @@ export default function DetailBody() {
                         </ListItem>
                         <ListItem>
                             <ListItemText
-                                primary="you will learn how to make performance of your web be better"
+                                primary="you will learn how to make performance of your web be better and more powerfull"
                             />
                         </ListItem>
                     </List>
                 </Grid>
-                <Grid item xs={12} md={6} sx={{flex:1, pl:"51px"}}>
-                    <List sx={{color:"#24024F"}}>
+                <Grid item xs={12} md={6} sx={{flex:1}}>
+                    <List sx={{color:"#24024F", pl:"20px"}}>
                         <ListItem>
                             <ListItemText
                                 primary="You will gain more knowledge about UX"

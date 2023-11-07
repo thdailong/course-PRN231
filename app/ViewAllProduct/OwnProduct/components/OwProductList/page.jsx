@@ -18,11 +18,11 @@ export default function OwProductList(props) {
       }
     }>
       {
-        displayedData.length > 0 && displayedData.map((item, index) =>
+        displayedData?.length > 0 ? displayedData?.map((item, index) =>
         (
           <OwProductCard key={index} item={item} />
         )
-        )
+        ):'No result'
       }
     </Box>
   )

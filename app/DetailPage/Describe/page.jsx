@@ -7,11 +7,15 @@ export default function Describe() {
         <Stack
             direction="column"
             spacing={0}
-            m="50px 0 0 73px"
+            mt="30px"
+            ml="50px"
             sx={
                 {
                     maxWidth: "1200px",
                     width: "1020px",
+                    height:"260px",
+                    border: "1px solid #24024F",
+                    borderRadius:"10px"
                 }
             }
         >
@@ -19,7 +23,8 @@ export default function Describe() {
                 sx={
                     {
                         width: "100%",
-                        height: "85px"
+                        height: "85px",
+                        padding: "15px 34px"
                     }
                 }
             >
@@ -28,7 +33,7 @@ export default function Describe() {
             <Stack
                 direction="column"
                 spacing={2}
-                m="15px 10px 0 45px"
+                m="15px 10px 0 35px"
                 gap="20px"
                 sx={
                     {
