@@ -20,6 +20,9 @@ import SearchIcon from '@mui/icons-material/Search'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import logo from './images/c.png'
+import DialogForm from './Dialog/DialogForm'
+import { readCookie } from '@/app/utils/cookies'
+import { USER_ROLE } from '@/app/constant/constant'
 
 const pages = [
   { text: 'Home', link: '/' },
@@ -29,7 +32,11 @@ const settings = ['Profile', 'Upgrade account']
 
 export default function UserNavPage({holdSearch}) {
   const router = useRouter()
+<<<<<<< HEAD
   const patchName = usePathname()
+=======
+  const isTeacher = readCookie(USER_ROLE) === 'Teacher'
+>>>>>>> a64b18f84820054e9b5682e56dae5df1780d2e76
 
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
@@ -57,6 +64,12 @@ export default function UserNavPage({holdSearch}) {
     router.push('/')
   }
 
+<<<<<<< HEAD
+=======
+  const handleRoute = () => {
+    router.push('/user')
+  }
+>>>>>>> a64b18f84820054e9b5682e56dae5df1780d2e76
 
   return (
     <AppBar
@@ -119,7 +132,7 @@ export default function UserNavPage({holdSearch}) {
         <Box>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Avatar alt="User" src="" />
             </IconButton>
           </Tooltip>
           <Menu
@@ -138,11 +151,25 @@ export default function UserNavPage({holdSearch}) {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography textAlign="center" onClick={handleRoute}>
+                Profile
+              </Typography>
+            </MenuItem>
+            {isTeacher ? (
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography
+                  textAlign="center"
+                  onClick={() => router.push('/teacher')}
+                >
+                  Create Course
+                </Typography>
               </MenuItem>
-            ))}
+            ) : (
+              <MenuItem onClick={handleCloseUserMenu}>
+                <DialogForm text="Upgrade Account" />
+              </MenuItem>
+            )}
           </Menu>
         </Box>
       </Toolbar>
