@@ -100,8 +100,8 @@ const Page = () => {
       <TableComponent
         columns={[
           {
-            id: 'name',
-            label: 'Name',
+            id: 'username',
+            label: 'Username',
             minWidth: 170,
             render: ({ senderId }) => {
               const user = accounts.find((item) => {

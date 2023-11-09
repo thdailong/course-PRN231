@@ -32,11 +32,7 @@ const settings = ['Profile', 'Upgrade account']
 
 export default function UserNavPage({holdSearch}) {
   const router = useRouter()
-<<<<<<< HEAD
-  const patchName = usePathname()
-=======
   const isTeacher = readCookie(USER_ROLE) === 'Teacher'
->>>>>>> a64b18f84820054e9b5682e56dae5df1780d2e76
 
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
@@ -52,8 +48,8 @@ export default function UserNavPage({holdSearch}) {
     setAnchorElNav(null)
   }
 
-  const onRedirect = (link) => {
-    router.push(link)
+  const onRedirect = (idx) => {
+    router.push(idx)
   }
 
   const handleCloseUserMenu = () => {
@@ -64,12 +60,9 @@ export default function UserNavPage({holdSearch}) {
     router.push('/')
   }
 
-<<<<<<< HEAD
-=======
   const handleRoute = () => {
     router.push('/user')
   }
->>>>>>> a64b18f84820054e9b5682e56dae5df1780d2e76
 
   return (
     <AppBar

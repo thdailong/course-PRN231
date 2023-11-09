@@ -154,7 +154,7 @@ const RegisterForm = () => {
   ]
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm"sx={{pt:"100px"}}>
       <Typography variant="h4" sx={Style.Title}>
         Welcome to CoursePRN
       </Typography>

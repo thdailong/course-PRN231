@@ -1,10 +1,13 @@
 // rfec
 import { Avatar, Box, Button, Card, CardContent, CardMedia, Rating, Stack, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 function FmProduct({ item }) {
 
   const [isHover, setIshover] = useState(false)
+
+  const router = useRouter()
 
   // handle hover of img box
   const handleMouseEnter = () => {
@@ -23,9 +26,9 @@ function FmProduct({ item }) {
         height: '500px',
         boxShadow: "10",
         cursor: "pointer",
-        padding: "12px 12px"
+        padding: "12px 12px",
       }}
-
+      onClick={() => router.push(`/DetailPage/${item.id}`)}
     >
       <Box
         sx={

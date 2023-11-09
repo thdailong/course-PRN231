@@ -32,15 +32,18 @@ function ProductNav() {
     }
 
     useEffect(() => {
-        const getAllProduct = async () => {
+        async function fetchMyAPI() {
             const response = await courseNotLearn()
-            setCourseFM(response.data)
+            const data = response.data
+            const dataNonBuy = data.filter((value) => {
+                return value.isStudying === false;
+            })
+            setCourseFM(dataNonBuy)
         }
-
-        getAllProduct()
+        fetchMyAPI()
     }, [])
 
-console.log(courseFm);
+    console.log(courseFm);
 
     const handlePageClick = (event) => {
         console.log('click hompage');

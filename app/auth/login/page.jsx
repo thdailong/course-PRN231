@@ -1,7 +1,7 @@
 'use client'
 import styles from '@/app/auth/login/page.module.css'
 import { isPasswordValid, isUserValid } from '@/app/auth/utils/utils'
-import { USER_ROLE } from '@/app/constant/constant'
+import { USER_ID, USER_ROLE } from '@/app/constant/constant'
 import useActions from '@/app/hooks/useActions'
 import useShallowEqualSelector from '@/app/hooks/useShallowEqualSelector'
 import { userActions } from '@/app/redux/reducers/user'
@@ -22,13 +22,13 @@ export default function Login() {
   const { show } = useActions(snackbar)
   const router = useRouter()
   const { isLogin } = useShallowEqualSelector((state) => state.user)
-  const isAdmin = readCookie(USER_ROLE) === 'Admin'
+  const isAdmin = readCookie(USER_ID) === '17bfcba3-90dd-4945-8511-3f6257a52ec0'
 
   useEffect(() => {
     if (isLogin && isAdmin) {
       router.push('/admin')
     } else if (isLogin) {
-      router.push('/')
+      router.push('/ViewAllProduct')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin])

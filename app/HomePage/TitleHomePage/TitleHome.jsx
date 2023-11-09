@@ -53,8 +53,8 @@ const TitleHome = (props) => {
   });
 
 
-  const handleViewall =() =>{
-    router.push("/ViewAllProduct")
+  const handleViewall = () =>{
+    router.push("/auth/login")
   }
 
   return (
@@ -64,11 +64,11 @@ const TitleHome = (props) => {
       <Box sx={{ flex: "1", display: "flex", flexDirection: "column", alignItems: "center", padding: '150px 0 0 75px' }}>
         <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px", padding: "0px 0px 0px 140px", position: "relative" }}>
           <Paper elevation={0} className={styles['hero-title']} sx={{ width: "100%", backgroundColor: "#FBFAFF", }}>
-            <Typography className={styles['hero-title']} sx={{ fontSize: "40px", fontWeight: "600", }}>
-              <span>Học</span> Chưa bao giờ <br /> <span >dễ đến vậy <br /></span> Hãy để Chúng tôi <span ><br /> Giúp bạn!</span>
+            <Typography className={styles['hero-title']} sx={{ fontSize: "64px", fontWeight: "600", }}>
+              <span>Learning</span> <span style={{color: 'black'}}>so easy <br /> </span> Let Us <span >Help you!</span>
             </Typography>
           </Paper>
-          <Typography variant='body1'>Cung cấp cho bạn hệ thống tài liệu học tập trực tuyến mới nhất,<br /> củng cố kiến thức để phát triển.</Typography>
+          <Typography variant='body1'>Providing you with the latest online learning material system,<br /> consolidating your knowledge for development.</Typography>
           <Image
             src={circleHero}
             alt="Your Image"
@@ -84,10 +84,10 @@ const TitleHome = (props) => {
         </Box>
         <Box sx={{ display: "flex", width: "100%", padding: "0 0 0 140px", justifyContent: "flex-start", gap: "20px", marginTop: "30px" }}>
           <Button variant="contained" disableElevation sx={{ backgroundColor: "#7F56D9", '&:hover': { backgroundColor: '#6941C6' } }} onClick={handleViewall}>
-            Bắt đầu học
+            Get started
           </Button>
           <BootstrapButton variant="contained" disableElevation sx={{ color: "#6941C6", fontWeight: "600" }}>
-            Tìm hiểu thêm
+            Learn more
           </BootstrapButton>
         </Box>
 

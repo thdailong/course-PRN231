@@ -24,7 +24,9 @@ import {
   Typography,
 } from '@mui/material'
 import { usePathname, useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect } from 'react'
+import useActions from '@/app/hooks/useActions'
+import { userActions } from '@/app/redux/reducers/user'
 
 const sideBarWidth = 300
 const SideBarItems = [
@@ -64,13 +66,10 @@ const SideBar = () => {
   const path = usePathname()
   const router = useRouter()
   const { isLogin } = useShallowEqualSelector((state) => state.user)
-  const isAdmin = readCookie(USER_ROLE) === 'Admin'
 
   useComponentWillMount(() => {
     if (!isLogin) {
       router.push('/auth/login')
-    } else if (!isAdmin) {
-      router.push('/')
     }
   })
 
@@ -137,13 +136,14 @@ const SideBar = () => {
 }
 
 const NavBar = () => {
+  const { logout } = useActions(userActions)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
-    setAnchorEl(null)
+    logout()
   }
   return (
     <AppBar
@@ -199,7 +199,7 @@ const NavBar = () => {
           id="basic-menu"
           anchorEl={anchorEl}
           open={open}
-          onClose={handleClose}
+          // onClose={handleClose}
           slotProps={{
             paper: {
               sx: {
@@ -208,13 +208,21 @@ const NavBar = () => {
             },
           }}
         >
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          <MenuItem onClick={() => logout()}>Logout</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
   )
 }
 const LayoutAdmin = ({ children }) => {
+  const router = useRouter()
+  const { isLogin } = useShallowEqualSelector((state) => state.user)
+  useEffect(() => {
+    if (!isLogin) {
+      router.push('/auth/login')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLogin])
   return (
     <FullScreenLayout
       sx={{

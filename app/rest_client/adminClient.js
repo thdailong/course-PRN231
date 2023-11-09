@@ -27,7 +27,7 @@ export const getAllAccount = async () => {
  }
  */
 export const updateBalanceUser = async (payload) => {
-  return http.put('auth/budgets/post', payload)
+  return http.post('auth/budgets/post', payload)
 }
 
 /**

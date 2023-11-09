@@ -2,6 +2,7 @@ export const UserWrapper = (theme) => ({
   margin: theme.spacing(1.5),
   ml: theme.spacing(0),
   mb: theme.spacing(0),
+  mt: 0
 })
 
 export const CardWrapper = (theme) => ({

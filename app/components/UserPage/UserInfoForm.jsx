@@ -18,9 +18,8 @@ const UserInfoForm = ({ name, userName, email, description, type }) => {
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <TextField
-              label="Full Name"
               fullWidth
-              defaultValue={name}
+              value={name}
               InputProps={{
                 readOnly: true,
               }}
@@ -28,9 +27,8 @@ const UserInfoForm = ({ name, userName, email, description, type }) => {
           </Grid>
           <Grid item xs={6}>
             <TextField
-              label="Role"
               fullWidth
-              defaultValue={type}
+              value={type}
               InputProps={{
                 readOnly: true,
               }}
@@ -38,7 +36,6 @@ const UserInfoForm = ({ name, userName, email, description, type }) => {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              label="Username"
               fullWidth
               defaultValue={userName}
               InputProps={{
@@ -48,7 +45,6 @@ const UserInfoForm = ({ name, userName, email, description, type }) => {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              label="Email"
               fullWidth
               defaultValue={email}
               InputProps={{
@@ -58,7 +54,6 @@ const UserInfoForm = ({ name, userName, email, description, type }) => {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              label="Description/Summary"
               fullWidth
               multiline
               rows={4}

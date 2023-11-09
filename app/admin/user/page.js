@@ -68,16 +68,10 @@ const Page = () => {
             render: ({ name }) => <Typography>{name}</Typography>,
           },
           {
-            id: 'email',
-            label: 'Email',
+            id: 'userName',
+            label: 'Username',
             minWidth: 170,
-            render: ({ email }) => <Typography>{email}</Typography>,
-          },
-          {
-            id: 'type',
-            label: 'Type',
-            minWidth: 170,
-            render: ({ type }) => <Typography>{type}</Typography>,
+            render: ({ userName }) => <Typography>{userName}</Typography>,
           },
           {
             id: 'username',

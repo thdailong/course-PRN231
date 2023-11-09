@@ -40,26 +40,27 @@ const Layout = ({ children }) => {
   })
 
   return (
-    <Box sx={{ backgroundColor: '#dfe6e9' }}>
+    <Box sx={{m:"0"}}>
       <UserNavPage />
+      <Box sx={{ backgroundColor: '#dfe6e9', height:"100vh", pt:"100px"}}>
+        <Grid container sx={S.UserWrapper}>
+          <Grid item xs={4}>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Profile username='' sx={S.CardWrapper} />
 
-      <Grid container sx={S.UserWrapper}>
-        <Grid item xs={4}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Profile username="Nguyen Le Hung Phu" sx={S.CardWrapper} />
-
-            <Sidebar options={options} sx={S.CardWrapper} />
-          </Box>
+              <Sidebar options={options} sx={S.CardWrapper} />
+            </Box>
+          </Grid>
+          <Grid item xs={8} sx={S.ContentWrapper}>
+            {children}
+          </Grid>
         </Grid>
-        <Grid item xs={8} sx={S.ContentWrapper}>
-          {children}
-        </Grid>
-      </Grid>
+      </Box>
     </Box>
   )
 }

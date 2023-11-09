@@ -24,7 +24,7 @@ const Page = () => {
   console.log(data)
 
   return (
-    <Paper elevation={3} sx={{ width: '100%', p: 3 }}>
+    <Paper elevation={3} sx={{ width: '100%', p:"12px" }}>
       <UserInfoForm {...data} />
     </Paper>
   )
